@@ -2,29 +2,40 @@ public abstract class Personaje implements AccionesP
 {
 	private int ataque;
 	private int vida;
-	private int x;
-	private int y;
+	private int defensa;
+	private String nombre;
 	
-	public abstract void atacar(Personaje personaje);
 	
-	public int getX()
-	{
-		return x;
+	
+	public Personaje(int ataque,int vida){ //constructor para cada profesor
+		this.ataque=ataque;
+		this.vida=vida;
 	}
-
-	public void setX(int x)
-	{
-		this.x = x;
+	
+	public Personaje(int ataque, int defensa,int vida, String nombre){ // constructor para cada estudiante
+		this.ataque=ataque;
+		this.defensa=defensa;
+		this.vida=vida;
+		this.nombre=nombre;
 	}
-
-	public int getY()
+	
+	public void setDefensa(int defensa)
 	{
-		return y;
+		this.defensa = defensa;
 	}
-
-	public void setY(int y)
+	
+	public int getDefensa()
 	{
-		this.y = y;
+		return defensa;
+	}
+	public void setNombre (String nombre)
+	{
+		this.nombre = nombre;
+	}
+	
+	public String getNombre()
+	{
+		return nombre;
 	}
 	
 	public int getVida()
