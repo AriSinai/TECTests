@@ -7,6 +7,11 @@ public class Estudiante extends Personaje
 		super(vida,ataque,defensa);
 	}
 	
+	public void atacar(Personaje estudiante)
+	{
+		estudiante.setVida(estudiante.getVida()-get.ataque());
+	}
+	
 
 
 }
