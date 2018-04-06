@@ -4,6 +4,11 @@ public class Estudiante extends Personaje
 	private int y;
 	private Maestro maestro;
 
+	public Estudiante(int vida, int ataque, int defensa)
+	{
+		super(vida,ataque,defensa);
+	}
+	
 	public int getX()
 	{
 		return x;
