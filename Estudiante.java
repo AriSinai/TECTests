@@ -3,9 +3,9 @@ public class Estudiante extends Personaje
 
 	private Maestro maestro;
 
-	public Estudiante(int vida, int ataque, int defensa, int x, int y)
+	public Estudiante(int vida, int ataque, int defensa)
 	{
-		super(vida,ataque,defensa,x,y);
+		super(vida,ataque,defensa);
 	}
 	
 
