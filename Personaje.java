@@ -2,7 +2,8 @@ public abstract class Personaje implements AccionesP
 {
 	private int ataque;
 	private int vida;
-	private int defensa;
+	private int x;
+	private int y;
 	
 	public abstract void atacar(Personaje personaje);
 	
