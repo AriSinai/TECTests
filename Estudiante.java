@@ -2,9 +2,9 @@ public class Estudiante extends Personaje
 {
 
 
-	public Estudiante(int vida, int ataque, int defensa)
+	public Estudiante(int ataque, int defensa,int vida, String nombre)
 	{
-		super(vida,ataque,defensa);
+		super(ataque,defensa,vida,nombre);
 	}
 	
 	public void atacar(Personaje estudiante)
