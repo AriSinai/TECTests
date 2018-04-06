@@ -5,8 +5,6 @@ public abstract class Personaje implements AccionesP
 	private int defensa;
 	private String nombre;
 	
-	
-	
 	public Personaje(int ataque,int vida){ //constructor para cada profesor
 		this.ataque=ataque;
 		this.vida=vida;
@@ -57,4 +55,6 @@ public abstract class Personaje implements AccionesP
 	{
 		this.ataque = ataque;
 	}
+	
+	public abstract atacar(Personaje personaje);
 }
