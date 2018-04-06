@@ -3,7 +3,7 @@ public class Item
   private String item1;
   private int valorItem;
   
-  public Item()
+  public Item(item1, valorItem)
   {
     
   }
