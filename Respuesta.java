@@ -58,5 +58,61 @@ public class Respuesta
 		respuestasHisto2[1] = "Austria";
 		respuestasHisto2[2] = "España";
 	}
+	
+	  public void getRespuestasLite0(String[] respuestasLite0){
+
+	respuestasLite0 = new respuestasLite0[3];
+	respuestasLite0[0]= "Rudyard Kipling";
+	respuestasLite0[1]= "Harper Lee";
+	respuestasLite0[2]= "Lewis Carroll";
+
+}
+
+
+  public void getRespuestasLite1(String[] respuestasLite1){
+
+	respuestasLite1 = new respuestasLite1[3];
+	respuestasLite1[0]= "Arthur Conan Doyle";
+	respuestasLite1[1]= "Agatha Christie";
+	respuestasLite1[2]= "Rudyard Kipling";
+
+}
+
+
+  public void getRespuestasLite2(String[] respuestasLite2){
+
+	respuestasLite2 = new respuestasLite2[3];
+	respuestasLite2[0]= "José Emilio Pacheco";
+	respuestasLite2[1]= "Octavio Paz";
+	respuestasLite2[2]= "Ambos";
+
+}
+
+public void getRespuestasProgra0(String[] respuestasProgra0){
+
+	respuestasProgra0 = new respuestasProgra0[3];
+	respuestasProgra0[0]= "No más de cincuenta";
+	respuestasProgra0[1]= "Las que sean";
+	respuestasProgra0[2]= "Dependiendo del código a ejecutar";
+}
+
+public void getRespuestasProgra1(String[] respuestasProgra1){
+
+	respuestasProgra1 = new respuestasProgra1[3];
+	respuestasProgra1[0]= "Un loop do-while corre el código al menos una vez";
+	respuestasProgra1[1]= "Un loop while corre el código antes de probar la condición";
+	respuestasProgra1[2]= "Un loop do-while revisa la condición antes de correr el código";
+}
+
+
+public void getRespuestasProgra2(String[] respuestasProgra2){
+
+	respuestasProgra2 = new respuestasProgra2[3];
+	respuestasProgra2[0]= "Abstract";
+	respuestasProgra2[1]= "Static";
+	respuestasProgra2[2]= "Implements";
+}
+
+
 
 }
