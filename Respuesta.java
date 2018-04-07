@@ -1,6 +1,6 @@
 public class Respuesta
 {
-	  private String[] respuestasMate0,respuestasMate1,respuestasMate2;
+	private String[] respuestasMate0,respuestasMate1,respuestasMate2;
   	private String[] respuestasHisto0,respuestasHisto1,respuestasHisto2;
   	private String[] respuestasLite0,respuestasLite1,respuestasLite2;
   	private String[] respuestasProgra0,respuestasProgra1,respuestasProgra2;
