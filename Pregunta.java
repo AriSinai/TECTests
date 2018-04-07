@@ -1,7 +1,7 @@
 public class Pregunta 
 {
 	
-	private PreguntasMate[] preguntasMate;
+  private PreguntasMate[] preguntasMate;
   private PreguntasHisto[] preguntasHisto;
   private PreguntasLite[] preguntasLite;
   private PreguntasProgra[] preguntasProgra;
