@@ -3,18 +3,17 @@ public abstract class Personaje implements AccionesP
 	private int ataque;
 	private int vida;
 	private int defensa;
-	private String nombre;
 	
 	public Personaje(int ataque,int vida){ //constructor para cada profesor
 		this.ataque=ataque;
 		this.vida=vida;
 	}
 	
-	public Personaje(int ataque, int defensa,int vida, String nombre){ // constructor para cada estudiante
+	public Personaje(int ataque, int defensa,int vida){ // constructor para cada estudiante
 		this.ataque=ataque;
 		this.defensa=defensa;
 		this.vida=vida;
-		this.nombre=nombre;
+		
 	}
 	
 	public void setDefensa(int defensa)
@@ -25,15 +24,6 @@ public abstract class Personaje implements AccionesP
 	public int getDefensa()
 	{
 		return defensa;
-	}
-	public void setNombre (String nombre)
-	{
-		this.nombre = nombre;
-	}
-	
-	public String getNombre()
-	{
-		return nombre;
 	}
 	
 	public int getVida()
