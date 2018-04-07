@@ -56,8 +56,9 @@ public abstract class Personaje implements AccionesP
 		this.ataque = ataque;
 	}
 	
-	public void preguntarMate(Personaje personaje){
+	public void atacar(Personaje personaje){
 
 		personaje.setVida(personaje.getVida()-(ataque-personaje.getDefensa()));
 	}
+	
 }
