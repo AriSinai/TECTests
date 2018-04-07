@@ -1,7 +1,14 @@
 public class Maestro extends Personaje
 {
-	private int x,y;
-	private Estudiante estudiante;
+	private int posX,posY;
+	
+	public int ataque;
+	public int vida;
+	public Villano(int ataque, vida){
+		this.ataque=ataque;
+		this.vida=vida;
+	}
+
 	
 	public Maestro(int vida, int ataque)
 	{
@@ -25,7 +32,7 @@ public class Maestro extends Personaje
 	}
 	
 	
-	public void atacar(Personaje estudiante)
+	public void atacar(Estudiante estudiante)
 	{
 		estudiante.setVida(estudiante.getVida()-get.ataque());
 	}
