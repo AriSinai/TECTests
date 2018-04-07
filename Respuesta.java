@@ -9,8 +9,8 @@ public class Respuesta
   	{
 
 		respuestasMate0 = new respuestasMate0[3];
-		respuestasMate0[0] = "Una ecuación irracional";
-		respuestasMate0[1] = "Una ecuación canónica";
+		respuestasMate0[0] = "Una ecuacion irracional";
+		respuestasMate0[1] = "Una ecuacion canonica";
 		respuestasMate0[2] = "Es la suma-resta de un conjunto de monomios";
 	}
 
@@ -18,8 +18,8 @@ public class Respuesta
   	{
 
 		respuestasMate1 = new respuestasMate1[3];
-		respuestasMate1[0] = "Es el número primo 11";
-		respuestasMate1[1] = "Es un número trascendente que viene dado por el cociente entre la longitud de la circunferencia y su diámetro";
+		respuestasMate1[0] = "Es el numero primo 11";
+		respuestasMate1[1] = "Es un numero trascendente que viene dado por el cociente entre la longitud de la circunferencia y su diametro";
 		respuestasMate1[2] = "Es una suma de vectores";
 	}
 
@@ -47,7 +47,7 @@ public class Respuesta
 		respuestasHisto1 = new respuestasHisto1[3];
 		respuestasHisto1[0] = "Teotihuacan";
 		respuestasHisto1[1] = "Tenochtitlan";
-		respuestasHisto1[2] = "Tepoztlán";
+		respuestasHisto1[2] = "Tepoztlan";
 	}
 
 	public void getRespuestasHisto2(String[] respuestasHisto2)
@@ -82,7 +82,7 @@ public class Respuesta
   public void getRespuestasLite2(String[] respuestasLite2){
 
 	respuestasLite2 = new respuestasLite2[3];
-	respuestasLite2[0]= "José Emilio Pacheco";
+	respuestasLite2[0]= "Jose Emilio Pacheco";
 	respuestasLite2[1]= "Octavio Paz";
 	respuestasLite2[2]= "Ambos";
 
@@ -91,7 +91,7 @@ public class Respuesta
 public void getRespuestasProgra0(String[] respuestasProgra0){
 
 	respuestasProgra0 = new respuestasProgra0[3];
-	respuestasProgra0[0]= "No más de cincuenta";
+	respuestasProgra0[0]= "No mas de cincuenta";
 	respuestasProgra0[1]= "Las que sean";
 	respuestasProgra0[2]= "Dependiendo del código a ejecutar";
 }
@@ -99,9 +99,9 @@ public void getRespuestasProgra0(String[] respuestasProgra0){
 public void getRespuestasProgra1(String[] respuestasProgra1){
 
 	respuestasProgra1 = new respuestasProgra1[3];
-	respuestasProgra1[0]= "Un loop do-while corre el código al menos una vez";
-	respuestasProgra1[1]= "Un loop while corre el código antes de probar la condición";
-	respuestasProgra1[2]= "Un loop do-while revisa la condición antes de correr el código";
+	respuestasProgra1[0]= "Un loop do-while corre el codigo al menos una vez";
+	respuestasProgra1[1]= "Un loop while corre el codigo antes de probar la condicion";
+	respuestasProgra1[2]= "Un loop do-while revisa la condicion antes de correr el codigo";
 }
 
 
