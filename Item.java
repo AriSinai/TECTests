@@ -1,21 +1,19 @@
 public class Item
 {
+  private String nombre;
+  private ImageIcon imagen;
   
-  private Estudiante estudiante;
-  private int valorItem1, valorItem2, valorItem3;
   
-  public int getValorItem1(Estudiante estudiante)
-  {
-    retrun estudiante.getVida() + 50;
-  }
-   
-  public int getValorItem2(Estudiante estudiante)
-  {
-    retrun estudiante.getVida() + 30;
-  }
-  
-  public int getValorItem1(Estudiante estudiante)
-  {
-    retrun estudiante.getAtaque() + 15;
-  }
+  public void setNombre(String nombre){
+		this.nombre=nombre;
+	}
+
+	public int getNombre(){
+		return nombre;
+	}
+  public void addImagen(ImageIcon imagen){
+	}
+
+	public ImageIcon removeImagen(){
+	}
 }
