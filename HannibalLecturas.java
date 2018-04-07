@@ -1,5 +1,10 @@
 public class HannibalLecturas extends Maestro
 {
+private Pregunta[] preguntas;
+private Respuesta[] respuestas;
+private int index;
+
+
 	public HannibalLecturas(int vida, int ataque)
 	{
 		super(vida);
