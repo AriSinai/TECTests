@@ -50,16 +50,16 @@ public class Estudiante extends Personaje
 	}
 	
 	
-	public int aumentarVida( Estudiante estudiante){
-		estudiante.setVida(personaje.getVida()+50);
+	public int aumentarVida(Estudiante estudiante){
+		estudiante.setVida(estudiante.getVida()+50);
 	
 	}
 	public int aumentarDefensa(Estudiante estudiante){
-		estudiante.setDefensa(personaje.getDefensa()+15);
+		estudiante.setDefensa(estudiante.getDefensa()+15);
 	
 	}
 	public int aumentarAtaque(Estudiante estudiante){
-		estudiante.setAtaque(personaje.getAtaque()+10);
+		estudiante.setAtaque(estudiante.getAtaque()+10);
 	
 	}
 	
