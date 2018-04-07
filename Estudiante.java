@@ -63,11 +63,9 @@ public class Estudiante extends Personaje
 	
 	}
 	
-	public void atacar (Personaje p){
-
-		Maestro m= (Maestro) p;
-
-		m.vida=m.vida - ataque;
+	public void atacar(Maestro maestro)
+	{
+		maestro.setVida(maestro.getVida()-get.ataque());
 	}
 	
 	
