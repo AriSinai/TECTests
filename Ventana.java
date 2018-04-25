@@ -7,7 +7,7 @@ public class Ventana extends JFrame{
 	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente;
 	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion; 
 	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes;
-	private int width, lenght, personaje;
+	private int width, length, personaje;
 	private Campus mapa;
 	private Estudiante estudiante;
 	private Profesor profesor;
@@ -23,9 +23,9 @@ public class Ventana extends JFrame{
 		estudiante= new Estudiante(100,200,100);
 		llenarCasillas();
 		width=700;
-		lenght=500;
+		length=500;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(width,lenght);
+		setSize(width,length);
 		initComponents();
 		
 		setVisible(true);
