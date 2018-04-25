@@ -1,72 +1,123 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 public class Ventana extends JFrame{
 
-	private JLabel label1,label2,label3,label4, labelVillano, labelVida,labelAtaque,lavelNombre, labelPelea, labelPeleaHeroe, labelPeleaVillano, labelHistoria;
-	private JButton boton1,boton2, botonAtacar;
-	private JPanel panel1,panel2,panel3,panel4,panelContenedor, panelIntroduccion, panelPrincipal, panelPelea; 
-	private Mapa mapa;
-	private Heroe heroe;
-	private Villano villanoActual;
-	private JScrollPane scrollPane;
-	private String historiaString;
+	private JLabel labelPersonaje, tituloEscoge, vacio1,vacio2,vacio3,vacio4,vacio5;
+	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente;
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion; 
+	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes;
+	private int width, lenght, personaje;
+	private Campus mapa;
+	private Estudiante estudiante;
+	private Profesor profesor;
+
 
 	public Ventana(){
-		super("Mi primera ventana");
-		mapa= new Mapa(10,10);
-		heroe= new Heroe();
-		heroe.nombre="El Prof";
-		historiaString="Bienvenido al juego Bla <br/>";
+		super("Test Fest in TEC");
+		mapa= new Campus(10,10);
+		estudiante= new Estudiante(100,200,100);
 		llenarCasillas();
-		initComponents();
-		setLayout(new GridLayout(2,2));
+		width=700;
+		lenght=500;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(500,500);
+		setSize(width,lenght);
+		initComponents();
+		
 		setVisible(true);
 	}
+
 	public void initComponents(){
 			panelIntroduccion= new JPanel();
 			panelIntroduccion.setLayout(new GridLayout(1,2));
 			panelIntroduccion.add (new JLabel ("Bienvenido"));
 			botonSiguiente=new JButton ("Siguiente");
-			botonSiguiente.addActionListener(new BotonSiguienteListener);
+			botonSiguiente.addActionListener(new BotonSiguienteListener());
 			panelIntroduccion.add(botonSiguiente);
 			add(panelIntroduccion);
 		}
 
-	public void initComponentsPelea(){
-		panelPelea=new JPanel();
-		panelPelea.setLayout(new GridLayout(2,2));
-		labelPelea=new JLabel;
-		labelPeleaVillano= new JLabel;
-		labelPeleaHeroe=new JLabel;
-		botonAtacar = new JButton;
-		labelVillano=new JLabel();
+	public void elegirPersonaje(){
+		// botones para elegir personajes de personajes
+		// Se defienen los botones para cada personaje
+		panelPersonajes = new JPanel();
+		panelPersonajes.setLayout( new BorderLayout());
+		//panelPersonajes.setLayout( new GridBagLayout());
+		//GridBagConstraints c = new GridBagConstraints();
+			
 
-		panelPelea.add(labelPelea);
-		panelPelea.add(botonAtacar);
-		botonAtaca.addActionListener(new BotonAtacatListener());
-		panelPelea.add(labelPeleaHeroe);
-		panelPelea.add(labelPeleaVillano);
-		add(panelPelea);
+		Ari=new ImageIcon( "Ari.jpeg");
+		Fer=new ImageIcon( "Fer.jpeg");
+		Mercy=new ImageIcon( "Mercy.jpeg");
+		Escoge=new ImageIcon("EscogePersonaje.png");
+		Personajes=new ImageIcon("Personajes.png");
+
+		botonFer=new JButton (Fer);
+		botonAri= new JButton(Ari);
+		botonMercy = new JButton(Mercy);
+		botonFer.addActionListener(new BotonSiguienteFERListener());
+		botonAri.addActionListener(new BotonSiguienteARIListener());
+		botonMercy.addActionListener(new BotonSiguienteMERCYListener());
+		botonAri.setBounds(new Rectangle (0,0,300,300));
+		botonFer.setBounds(new Rectangle (0,0,300,300));
+		botonMercy.setBounds(new Rectangle (0,0,300,300));
+
+		tituloEscoge=new JLabel(Escoge);
+		labelPersonaje=new JLabel(Personajes);
+
+
+		panelPersonajes.add(labelPersonaje, BorderLayout.PAGE_END);
+		panelPersonajes.add(tituloEscoge, BorderLayout.PAGE_START);
+
+		panelPersonajes.add(botonAri, BorderLayout.LINE_START);
+		panelPersonajes.add(botonFer, BorderLayout.CENTER);
+		panelPersonajes.add(botonMercy, BorderLayout.LINE_END);
+		add(panelPersonajes);
 	}
-	public void initComponentsPrincipal(){
+	public void mapaPrincipal(){
 		panelPrincipal=new JPanel();
 		panelPrincipal.setLayout(new GridLayout(2,2));
-		panel1= new JPanel();
-		panel1.setLayout(new GridLayout(2,2));
-		boton1= new JButton("Push me");
-		boton1.addActionListener(new Boton1Listener());
-		panel1.add(boton1);
-		label1= new JLabel("Hello World!!!");
-		panel1.add(label1);
-		label2= new JLabel("Hello World 2!!!");
-		panel1.add(label2);
-		panelPrincipal.add(panel1);
+		
+
+		//1
+		panelMapa= new JPanel();
+		add(panelMapa);
+		pintarMapa();
+		
+
+		//2
+		panelHistoria= new JPanel();
+		panelHistoria.setLayout(new FlowLayout());
+		panelPrincipal.add(panelHistoria);
 
 
+		// 3
+		panelFlechas= new JPanel();
+		panelFlechas.setLayout(new GridLayout(3,3));
+		
+		vacio1 = new JLabel("  ");
+		vacio2 = new JLabel("  ");
+		vacio3 = new JLabel("  ");
+		vacio4 = new JLabel("  ");
+		vacio5 = new JLabel("  ");
+		flechaIzquierda = new JButton("Izquierda");
+		flechaDerecha= new JButton("Derecha");
+		flechaArriba= new JButton("Arriba");
+		flechaAbajo= new JButton("Abajo");
+		panelFlechas.add(vacio1);
+		panelFlechas.add(flechaArriba);
+		panelFlechas.add(vacio2);
+		panelFlechas.add(flechaIzquierda);
+		panelFlechas.add(vacio3);
+		panelFlechas.add(flechaDerecha);
+		panelFlechas.add(vacio4);
+		panelFlechas.add(flechaAbajo);
+		panelFlechas.add(vacio5);
+		panelPrincipal.add(panelFlechas);
+
+		//4
+
+		/*
 		panel2= new JPanel();
 		labelHistoria=new JLabel();
 		scrollPane.add(labelHistoria);
@@ -98,6 +149,27 @@ public class Ventana extends JFrame{
 		panel4.add(labelAtaque);
 		panelPrincipal.add(panel4);	
 		add(panelPrincipal)	;
+		*/
+		add(panelPrincipal);
+	}
+
+	public void pintarMapa(){
+		
+		panel3= new JPanel();
+		panel3.setLayout(new GridLayout(mapa.casillas.length,mapa.casillas[0].length));
+		for(int i=0;i<mapa.casillas.length;i++){
+			for(int j=0;j<mapa.casillas[i].length;j++){
+				if(mapa.casillas[i][j].estudiante==null){
+					panel3.add(new JLabel("Vacio"));
+				}else{
+					panel3.add(new JLabel("Heroe"));
+				}
+			}
+		}
+		
+		panelPrincipal.add(panel3);
+		panelPrincipal.revalidate();
+		panelPrincipal.repaint();		
 	}
 
 	public void llenarCasillas(){
@@ -107,118 +179,55 @@ public class Ventana extends JFrame{
 				if(Math.random()>=0.5){
 					Double ataqueDouble = Math.random()*99+1;
 					Double vidaDouble=(Math.random()*99+1);
-					mapa.casillas [i][j]=new Villano();
+					//mapa.casillas [i][j]=new Profesor(100,100);
 
 				}
 			}
 		}
-		mapa.casillas[0][0].heroe=heroe;
+		mapa.casillas[0][0].estudiante=estudiante;
 	}
 
-	public void pintarMapa(){
-		
-		panel3= new JPanel();
-		panel3.setLayout(new GridLayout(mapa.casillas.length,mapa.casillas[0].length));
-		for(int i=0;i<mapa.casillas.length;i++){
-			for(int j=0;j<mapa.casillas[i].length;j++){
-				if(mapa.casillas[i][j].heroe==null){
-					panel3.add(new JLabel("Vacio"));
-				}else{
-					panel3.add(new JLabel("Heroe"));
-				}
-			}
+	public class BotonSiguienteFERListener implements ActionListener{
+		public void actionPerformed (ActionEvent e){
+			remove(panelPersonajes);
+			mapaPrincipal();
+			revalidate();
+			repaint();
+			personaje= 1;
+
 		}
-		
-		panelContenedor.add(panel3);
-		panelContenedor.revalidate();
-		panelContenedor.repaint();		
 	}
-
-	public class Boton1Listener implements ActionListener{
-
-		public void actionPerformed(ActionEvent e){
-			System.out.println("Entra boton");
-			System.out.println("Actual x:"+heroe.x+" y: "+heroe.y);
-
-			mapa.casillas[heroe.x][heroe.y].heroe=null;
-			heroe.y= heroe.y+1;
-			System.out.println("Nueva x:"+heroe.x+" y: "+heroe.y);
-
-			mapa.casillas[heroe.x][heroe.y].heroe=heroe;
-			if (mapa.casillas[heroe.x][heroe.y].villano!= null){
-
-				historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[heroe.x][heroe.y].villano.ataque+"<br/>";
-				remove (panelPrincipal);
-				initComponentsPelea();
-				villanoActual=mapa.casillas[heroe.x][heroe.y];
+			
+	public class BotonSiguienteARIListener implements ActionListener{
+		public void actionPerformed (ActionEvent e){
+			remove(panelPersonajes);
+			mapaPrincipal();
+			revalidate();
+			repaint();
+			personaje= 2;
 				
-				imprimeStatsPelea(villanoActual, heroe);
-				revalidate();
-				repaint();
-
-			}else{
+		}
+	}
+	public class BotonSiguienteMERCYListener implements ActionListener{
+		public void actionPerformed (ActionEvent e){
+			remove(panelPersonajes);
+			mapaPrincipal();
+			revalidate();
+			repaint();
+			personaje= 3;
 				
-				pintarMapa();
-
-			}
+		}
 			
 
-		}
-
-		public class BotonAtacatListener implements ActionListener{
-			public void actionPerformed (ActionEvent e){
-					heroe.atacar(villanoActual);
-					villanoActual.atacar(heroe);
-					imprimeStatsPelea(villanoActual,heroe)
-					if(heroe.vida<=0){
-						//Gameover
-
-					}
-					if(villano.vida<=0){
-						labelPelea.setText("Has matado al villano");
-						historiaString=historiaString+"matar <br/>"
-						remove(panelPelea);
-						add(panelPrincipal);
-						revalidate();
-						repaint();
-						imprimeStats();
-						panelContenedor.remove(panel3);
-						panelContenedor.revalidate();
-						panelContenedor.repaint();
-						pintarMapa();
-						imprimeHistoria();
-
-					}
-			}
-
-		}
-
-		public class BotonSiguienteListener implements ActionListener{
+	}
+	
+	public class BotonSiguienteListener implements ActionListener{
 			public void actionPerformed(ActionEvent e){
 				remove (panelIntroduccion);
-				initComponentsPrincipal();
+				elegirPersonaje();
 				revalidate();
 				repaint();
 			}
-		}
-
-		public void imprimeStats(){
-			labelVida.setText("Vida:"+heroe.vida);
-			labelAtaque.setText("Ataque:"+heroe.ataque);
-			labelNombre.setText("nombre:"+heroe.nombre);
-
-		}
-
-		public void imprimeStatsPelea(Villano v, Heroe h){
-
-			labelPeleaHeroe.setText("Stats del heroe: "+h.vida+" vida"+h.ataque+" ataque");
-			labelPeleaHeroe.setText("Stats del villano: "+v.vida+" vida"+v.ataque+" ataque");
-
-		}
-		
-		public void imprimeHistoria(){
-			labelHistoria.setText("<htmal>"+historiaString+"</html>");
-		}
-	}
+		}	
 
 }
