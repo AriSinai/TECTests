@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge, vacio1,vacio2,vacio3,vacio4,vacio5;
+	private JLabel labelPersonaje, tituloEscoge, vacio1,vacio2,vacio3,vacio4,vacio5, labelHistoria;
 	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente;
 	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion; 
 	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes;
@@ -11,6 +11,10 @@ public class Ventana extends JFrame{
 	private Campus mapa;
 	private Estudiante estudiante;
 	private Profesor profesor;
+	//
+	private JScrollPane scrrollPane;
+	private String stringStory;
+	//
 
 
 	public Ventana(){
@@ -88,6 +92,10 @@ public class Ventana extends JFrame{
 		//2
 		panelHistoria= new JPanel();
 		panelHistoria.setLayout(new FlowLayout());
+		labelHistoria= new JLabel();
+		scrollPane.add(labelHistoria);
+		scrollPane= new JScrollPane();
+		panelHistoria.add(scrollPane);
 		panelPrincipal.add(panelHistoria);
 
 
@@ -151,6 +159,7 @@ public class Ventana extends JFrame{
 		add(panelPrincipal)	;
 		*/
 		add(panelPrincipal);
+		
 	}
 
 	public void pintarMapa(){
