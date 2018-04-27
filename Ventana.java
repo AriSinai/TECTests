@@ -293,9 +293,9 @@ public class Ventana extends JFrame{
     items= new ImageIcon("items.png");
     Mochila= new ImageIcon("mochila.png");
     
-    botonItem1= new JButton("1");
-    botonItem2= new JButton("2");
-    botonItem3= new JButton("3");
+    botonItem1= new JButton("item 1");
+    botonItem2= new JButton("item 2");
+    botonItem3= new JButton("item 3");
     //hacer los listeners
     //botonItem1.addActionListener(new botonItem1Listener());
     //botonItem2.addActionListener(new botonItem2Listener());
@@ -335,6 +335,27 @@ public class Ventana extends JFrame{
     labelStudentStats= new JLabel(StudentStats);
     labelTeacherStats= new JLabel(TeacherStats);
     panelContenedorPelea.add(panelContenedorPelea);
+		
+		
+   public class botonItem1Listener implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        estudiante.aumentarVida();
+
+    }
+}
+public class botonItem2Listener implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        estudiante.aumentarDefensa();
+
+    }
+}
+
+public class botonItem3Listener implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        estudiante.aumentarAtaque();
+
+    }
+}
 
 }
 	public void panelQuiz(){
@@ -391,7 +412,7 @@ public class Ventana extends JFrame{
 		
 	
 	}
-	
+
 	
 
 }
