@@ -3,14 +3,15 @@ import java.awt.*;
 import java.awt.event.*;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge, vacio1,vacio2,vacio3,vacio4,vacio5, labelHistoria;
-	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente;
-	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion; 
-	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes;
+	private JLabel labelPersonaje, tituloEscoge, vacio1,vacio2,vacio3,vacio4,vacio5, labelHistoria,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelVida,labelRecompensa;
+	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bRespuesta1,bRespuesta2,bRespuesta3,bSubmit;
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz,panelImagen,panelPreguntas,panelStats,panelSubmit; 
+	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes,fer,ari,mercy;
 	private int width, length, personaje;
 	private Campus mapa;
 	private Estudiante estudiante;
 	private Profesor profesor;
+	private JTextField tRespuesta;
 	//
 	private JScrollPane scrrollPane;
 	private String stringStory;
@@ -336,6 +337,60 @@ public class Ventana extends JFrame{
     panelContenedorPelea.add(panelContenedorPelea);
 
 }
+	public void panelQuiz(){
+		//Panel Quiz es el panel principal de quiz y se divide en 4
+		panelQuiz = new JPanel();
+		panelQuiz.setLayout(new GridLayout(2,2));
+		// 1 van las imagenes de estudiante vs maestro
+		panelImagen = new JPanel();
+		panelImagen.setLayout(new FlowLayout());
+		fer = new ImageIcon("Fer.jpeg");
+		ari = new ImageIcon("Ari.jpeg");
+		labelEst = new JLabel(fer);
+		labelEst.setBounds(new Rectangle (0,0,0,0));
+		panelImagen.add(labelEst);
+		labelVacio = new JLabel("vs");
+		panelImagen.add(labelVacio);
+		labelMaestro = new JLabel(ari);
+		labelMaestro.setBounds(new Rectangle (0,0,0,0));
+		panelImagen.add(labelMaestro);
+		panelQuiz.add(panelImagen);
+		//2 aqui las preguntas van a ir como un label y va a haber 3 botones de respuesta
+		panelPreguntas = new JPanel();
+		panelPreguntas.setLayout(new GridLayout(4,1));
+		labelPregunta = new JLabel("Pregunta ...");
+		panelPreguntas.add(labelPregunta);
+		bRespuesta1 = new JButton("Respuesta1");
+		panelPreguntas.add(bRespuesta1);
+		bRespuesta2 = new JButton("Respuesta2");
+		panelPreguntas.add(bRespuesta2);
+		bRespuesta3 = new JButton("Respuesta3");
+		panelPreguntas.add(bRespuesta3);
+		panelQuiz.add(panelPreguntas);
+		//3 En este panel vas a meter en el JText a,b o c y vas a picar el boton submit
+		panelSubmit = new JPanel();
+		panelSubmit.setLayout(new GridLayout(3,1));
+		labelRespuesta = new JLabel("Pon la respuesta");
+		panelSubmit.add(labelRespuesta);
+		tRespuesta = new JTextField();
+		panelSubmit.add(tRespuesta);
+		bSubmit = new JButton("Submit");
+		panelSubmit.add(bSubmit);
+		panelQuiz.add(panelSubmit);
+		//4 van a aparecer los stats de el personaje en el panel
+		panelStats = new JPanel();
+		panelStats.setLayout(new GridLayout(3,1));
+		labelStats = new JLabel("Stats");
+		panelStats.add(labelStats, SwingConstants.CENTER);
+		labelVida = new JLabel("Vida");
+		panelStats.add(labelVida);
+		labelRecompensa = new JLabel("Recompensa");
+		panelStats.add(labelRecompensa);
+		panelQuiz.add(panelStats);
+		add(panelQuiz);
+		
+	
+	}
 	
 	
 
