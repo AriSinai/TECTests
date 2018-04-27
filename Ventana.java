@@ -237,6 +237,104 @@ public class Ventana extends JFrame{
 				revalidate();
 				repaint();
 			}
-		}	
+		}
+	public void Pelea(){
+
+	public JPanel panelContenedorPelea, panelItems,panelPelea,panelPeleaImagenes,panelStatsPelea;
+	public JLabel labelAri,labelFer,labelMercy,labelMochila,labelItems,labelStats,labelPorfirioGuiaz,labelCaptainLoop,labelHannibalLecturas,labelDarthCalculater,labelStatsStudents;
+	public ImageIcon Ari,Fer,Mercy,StudentStats, TeacherStats, atacar;
+	public JButton botonItem1,botonItem2,botonItem3,botonPelea;
+
+	panelContenedorPelea= new JPanel();
+	panelContenedorPelea.setLayout(new GridLayout(2,2));
+
+
+
+
+	//1
+	panelPeleaImagenes = new JPanel();
+	panelPeleaImagenes.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 20));
+	Ari=new ImageIcon( "Ari.jpeg");
+	Fer=new ImageIcon( "Fer.jpeg");
+	Mercy=new ImageIcon( "Mercy.jpeg");
+	PorfirioGuiaz= new ImageIcon("Pg.jpeg");
+	CaptainLoop= new ImageIcon("Cl.jpeg");
+	HannibalLecturas= new ImageIcon("Hl.jpeg");
+	DarthCalculater= new ImageIcon("Dc.jpeg");
+	labelAri= new JLabel(Ari);
+	labelFer= new JLabel(Fer);
+	labelMercy= new JLabel(Mercy);
+	labelPorfirioGuiaz= new JLabel(Pg);
+	labelCaptainLoop= new JLabel(Cl);
+	labelHannibalLecturas= new JLabel(Hl);
+	labelDarthCalculater= new JLabel(Dc);
+
+
+    
+    //labelAri.setBounds(new)PIOSICION Y DIENSION
+
+
+    panelPeleaImagenes.add(labelAri);
+    /*panelPeleaImagenes.add(labelFer);
+    panelPeleaImagenes.add(labelMercy);*/
+    panelPeleaImagenes.add(labelCaptainLoop);
+    /*panelPeleaImagenes.add(labelPorfirioGuiaz);
+    panelPeleaImagenes.add(labelDarthCalculater);
+    panelPeleaImagenes.add(labelHannibalLecturas);*/
+    panelContenedorPelea.add(panelPeleaImagenes);
+
+    //RUTA DE IMAGEN STRING EN C/ UNA DE NOSOTRAS 
+
+
+// 2
+    panelItems= new JPanel();
+    panelItems.setLayout(new BorderLayout());
+    items= new ImageIcon("items.png");
+    Mochila= new ImageIcon("mochila.png");
+    
+    botonItem1= new JButton("1");
+    botonItem2= new JButton("2");
+    botonItem3= new JButton("3");
+    //hacer los listeners
+    //botonItem1.addActionListener(new botonItem1Listener());
+    //botonItem2.addActionListener(new botonItem2Listener());
+    //botonItem3.addActionListener(new botonItem3Listener());
+    //botonItem1.setBounds(new Rectangle(0,0,50,50));
+    //botonItem2.setBounds(new Rectangle(0,0,50,50));//* revisar dimension
+    //botonItem3.setBounds(new Rectangle(0,0,50,50));
+
+    labelMochila= new JLabel(Mochila);
+    labelItems= new JLabel(items);
+
+
+    panelItems.add(labelMochila, BorderLayout.PAGE_START);
+    panelItems.add(labelItems, BorderLayout.PAGE_END);
+    panelItems.add(botonItem1, BorderLayout.LINE_START);
+    panelItems.add(botonItem2, BorderLayout.CENTER);
+    panelItems.add(botonItem3, BorderLayout.LINE_END);
+    panelContenedorPelea.add(panelItems);
+
+    //3
+    panelPelea= new JPanel();
+    panelPelea.setLayout(new BorderLayout());
+    atacar= new ImageIcon("atacar.png");
+    botonAtacar= new JButton(atacar);
+    botonAtacar.addActionListener(new peleaActionListener());
+    botonAtacar.setBounds(new Rectangle(5,5,60,60));
+
+    panelPelea.add(botonPelea, BorderLayout.CENTER);
+    panelContenedorPelea.add(panelPelea);
+
+
+    //4
+    panelStatsPelea= new JPanel();
+    panelStatsPelea.setLayout(GridLayout(3,2));
+    studentStats= new ImageIcon("StudentStats.png");
+    teacherStats= new ImageIcon("TeacherStats.png");
+    labelStudentStats= new JLabel(StudentStats);
+    labelTeacherStats= new JLabel(TeacherStats);
+    panelContenedorPelea.add(panelContenedorPelea);
+
+}
 
 }
