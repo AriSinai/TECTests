@@ -319,7 +319,7 @@ public class Ventana extends JFrame{
     panelPelea.setLayout(new BorderLayout());
     atacar= new ImageIcon("atacar.png");
     botonAtacar= new JButton(atacar);
-    botonAtacar.addActionListener(new peleaActionListener());
+    botonAtacar.addActionListener(new atacarActionListener());
     botonAtacar.setBounds(new Rectangle(5,5,60,60));
 
     panelPelea.add(botonPelea, BorderLayout.CENTER);
@@ -336,5 +336,7 @@ public class Ventana extends JFrame{
     panelContenedorPelea.add(panelContenedorPelea);
 
 }
+	
+	
 
 }
