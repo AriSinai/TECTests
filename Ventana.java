@@ -356,6 +356,26 @@ public class botonItem3Listener implements ActionListener{
 
     }
 }
+		
+public void iniciarMapa(){
+    int max= 3;
+    int min= 0;
+    int randy= (int)(Math.random() * max) + min;
+    if(randy==0){
+        mapa.getCasillas()[i][j].setProfesor(new Draculator());
+    }
+    if(randy==1){
+        mapa.getCasillas()[i+1][j+1].setProfesor(new HannibalLecturas());
+    }
+    if(randy==2){
+        mapa.getCasillas()[i+2][j+2].setProfesor(new PorfirioGuiaz());
+    }
+    if(randy==3){
+        mapa.getCasillas()[i+3][j+3].setProfesor(new CaptainLoop());
+    }
+    
+ }
+}
 
 }
 	public void panelQuiz(){
