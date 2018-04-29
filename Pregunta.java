@@ -20,6 +20,8 @@ public class Pregunta{
 		if(respuestas[indexRespuesta].equals(respuestaCorrecta)){
 			//estudiante.setVida(estudiante.getVida()+20);
 			System.out.println("Bien");
+		}else{
+			System.out.println("Mal");
 		}
 	}
 
