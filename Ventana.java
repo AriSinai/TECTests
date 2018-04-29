@@ -101,7 +101,8 @@ public class Ventana extends JFrame{
 		panelHistoria.setLayout(null);
 		labelHistoria= new JLabel("Historia");
 		labelHistoria.setBounds(120,20,180,23);
-		historia= "sjhdjshdjshdhshjdhsjhdjshdjsjhdhs";
+		historia= "Llegó la recta final de clases, la estudiante tendrá que pasar todos los exámenes para poder salir del campus ¡Cuidado! Hay profesores a lo largo del Campus que te atacarán con exámenes sorpresa, recuerda que cinco exámenes reprobados y habrás reprobado. +
+			"Recuerda que puedes recoger items que te ayudarán a lo largo de tu travesía ¡Que el juego comience!";
 
 		areaDeHistoria=new JTextArea();
 		areaDeHistoria.setText(historia);
