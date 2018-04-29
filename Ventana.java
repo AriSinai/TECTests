@@ -379,10 +379,10 @@ public void iniciarMapa(){
 
 }
 	public void panelQuiz(){
-		//Panel Quiz es el panel principal de quiz y se divide en 4
+		//Este panel se va a dividir en 4 
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
-		// 1 van las imagenes de estudiante vs maestro
+		// 1er panel es donde aparecen las imagenes de los personajes que pelean
 		panelImagen = new JPanel();
 		panelImagen.setLayout(new FlowLayout());
 		fer = new ImageIcon("Fer.jpeg");
@@ -396,29 +396,24 @@ public void iniciarMapa(){
 		labelMaestro.setBounds(new Rectangle (0,0,0,0));
 		panelImagen.add(labelMaestro);
 		panelQuiz.add(panelImagen);
-		//2 aqui las preguntas van a ir como un label y va a haber 3 botones de respuesta
+		// 2do panel es donde vamos a pintar las preguntas
 		panelPreguntas = new JPanel();
-		panelPreguntas.setLayout(new GridLayout(4,1));
-		labelPregunta = new JLabel("Pregunta ...");
+		labelPregunta = new JLabel();
 		panelPreguntas.add(labelPregunta);
-		bRespuesta1 = new JButton("Respuesta1");
-		panelPreguntas.add(bRespuesta1);
-		bRespuesta2 = new JButton("Respuesta2");
-		panelPreguntas.add(bRespuesta2);
-		bRespuesta3 = new JButton("Respuesta3");
-		panelPreguntas.add(bRespuesta3);
+		imprimirPreguntas();
 		panelQuiz.add(panelPreguntas);
-		//3 En este panel vas a meter en el JText a,b o c y vas a picar el boton submit
+		// 3er panel es donde van a aparecer las opciones para ingresar respuesta
 		panelSubmit = new JPanel();
 		panelSubmit.setLayout(new GridLayout(3,1));
-		labelRespuesta = new JLabel("Pon la respuesta");
+		labelRespuesta = new JLabel("Pon 1, 2, 3 segun tu respuesta");
 		panelSubmit.add(labelRespuesta);
 		tRespuesta = new JTextField();
 		panelSubmit.add(tRespuesta);
 		bSubmit = new JButton("Submit");
+		bSubmit.addActionListener(new BotonSubmitListener());
 		panelSubmit.add(bSubmit);
 		panelQuiz.add(panelSubmit);
-		//4 van a aparecer los stats de el personaje en el panel
+		// 4to panel es donde van a aparecer los stats del personaje
 		panelStats = new JPanel();
 		panelStats.setLayout(new GridLayout(3,1));
 		labelStats = new JLabel("Stats");
@@ -428,9 +423,76 @@ public void iniciarMapa(){
 		labelRecompensa = new JLabel("Recompensa");
 		panelStats.add(labelRecompensa);
 		panelQuiz.add(panelStats);
+
 		add(panelQuiz);
-		
 	
+	}
+	public void imprimirPreguntas(){
+		// Aqui se van a imprimir las preguntas segun el contador, para que no se repitan
+		String imprime = "<html>";
+		if(contador == 0){
+			 p = "¿Que es un polinomio?";
+			 r = new String[3];
+			r[0]="Una ecuacion irracional";
+			r[1]="Es la suma-resta de un conjunto de monomios";
+			r[2]="Una ecuacion canonica";
+			respuestaCorrecta = r[1];
+			imprime += p+"<br/>";
+			imprime +="1 - "+r[0]+"<br/>";
+			imprime+="2 - "+r[1]+"<br/>";
+			imprime+="3 - "+r[2]+"<br/>";
+			contador=1;
+		}else if(contador ==1){
+			p = "¿Que cultura recibe el nombre de CULTURA MADRE?";
+			r = new String[3];
+			r[0]="Olmeca";
+			r[1]="Azteca";
+			r[2]="Mexica";
+			respuestaCorrecta = r[0];
+			imprime += p+"<br/>";
+			imprime +="1 - "+r[0]+"<br/>";
+			imprime+="2 - "+r[1]+"<br/>";
+			imprime+="3 - "+r[2]+"<br/>";
+			contador=2;
+		}else if(contador ==2){
+			p = "¿Quien creo al personaje de Sherlock Holmes?";
+			r = new String[3];
+			r[0]="Arthur Conan Doyle";
+			r[1]="Agatha Christie";
+			r[2]="Rudyard Kipling";
+			respuestaCorrecta = r[0];
+			imprime += p+"<br/>";
+			imprime +="1 - "+r[0]+"<br/>";
+			imprime+="2 - "+r[1]+"<br/>";
+			imprime+="3 - "+r[2]+"<br/>";
+			contador=2;
+		}else if(contador ==3){
+			p = "¿Cual es la palabra reservada para el uso de una interfaz en otra clase?";
+			r = new String[3];
+			r[0]="Abstract";
+			r[1]="Static";
+			r[2]="Implements";
+			respuestaCorrecta = r[2];
+			imprime += p+"<br/>";
+			imprime +="1 - "+r[0]+"<br/>";
+			imprime+="2 - "+r[1]+"<br/>";
+			imprime+="3 - "+r[2]+"<br/>";
+			contador=0;
+		}
+		imprime+="</html>";
+		labelPregunta.setText(imprime);
+	} 
+
+
+	public class BotonSubmitListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			
+			respuestaSubmit = Integer.parseInt(tRespuesta.getText());
+			tRespuesta.setText("");
+			//aqui se va a tener que poner una exepcion ya que si pica otra cosa que no sea 1,2,3 aparece una excepcion "AWT-EventQueue-0"
+			pregunta.respuestaCorrecta(r,respuestaSubmit,respuestaCorrecta);
+			initPanelFinalQuiz();
+		}
 	}
 
 	
