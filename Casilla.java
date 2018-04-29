@@ -1,9 +1,6 @@
-public class Casilla
-{
+public class Casilla{
 
-	private Estudiante estudiante;
-	private Maestro maestro;
-	
-
+	public Estudiante estudiante;
+	public Profesor profesor;
 
 }

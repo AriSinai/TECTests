@@ -1,5 +1,5 @@
-public abstract class Personaje implements AccionesP
-{
+public abstract class Personaje implements AccionPersonaje{
+	
 	private int ataque;
 	private int vida;
 	private int defensa;
@@ -52,3 +52,4 @@ public abstract class Personaje implements AccionesP
 	}
 	
 }
+

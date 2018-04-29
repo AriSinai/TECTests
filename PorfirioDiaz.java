@@ -1,8 +1,7 @@
-public class CaptainLoop extends Profesor{
-	private String ruta = "CaptainLoop.png";
+public class PorfirioDiaz extends Profesor{
+	private String ruta = "PorfirioDiaz.png";
 
-
-	public CaptainLoop (int ataque,int vida){
+	public PorfirioDiaz (int ataque,int vida){
 		super(ataque,vida);
 	}
 
