@@ -4,7 +4,7 @@ import java.awt.event.*;
 public class Ventana extends JFrame{
 
 	private JLabel labelPersonaje, tituloEscoge, vacio1,vacio2,vacio3,vacio4,vacio5, labelHistoria,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelVida,labelRecompensa;
-	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bRespuesta1,bRespuesta2,bRespuesta3,bSubmit;
+	private JButton botonFer, botonMercy, botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit;
 	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz,panelImagen,panelPreguntas,panelStats,panelSubmit; 
 	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes,fer,ari,mercy;
 	private int width, length, personaje;
@@ -12,9 +12,12 @@ public class Ventana extends JFrame{
 	private Estudiante estudiante;
 	private Profesor profesor;
 	private JTextField tRespuesta;
+	private int contador=0,respuestaSubmit;
+	private Pregunta pregunta;
+	private String[] r;
 	//
 	private JScrollPane scrrollPane;
-	private String stringStory;
+	private String stringStory,p,respuestaCorrecta;
 	//
 
 
