@@ -34,21 +34,18 @@ panelHistoria= new JPanel(){
 			+"Como item puedes encontrar una pesa voladora. Le encanta ir a competencias de todos los deportes e incluso olimpiadas matemáticas. Tendrás suerte cuando te encuentres al malvado Draculator.";
 			
 
-			else if(estudianteActual.getClass()== Mercy){
+		}else if(estudianteActual.getClass()== Mercy){
 				historiaPersonaje= "Mercy es una chica intelectual, que le encanta leer y aprender constantemente. Como item puedes encontrar reseñas literarias."
 				+"Ha leído muchísimos libros y ni siquiera en fines de semana deja de hacerlo. Tendrás suerte cuando te encuentres al malvado Hannibal Lecturas.";
 
 
 			
-			else if(estudianteActual.getClass()==Fer){
+			}else if(estudianteActual.getClass()==Fer){
 				historiaPersonaje= "Fer es una chica bromista, pero su verdadera pasión es la historia. Le encanta hacer memes históricos."
 				 +"Como item podrás encontrar cupones de fast food. Tendrás suerte cuando te encuentres al malvado PorfirioGuiaz.";
 				}
 
-			}
-	
-		}
-		panelHistoria.add(historiaPersonaje);
+    panelHistoria.add(historiaPersonaje);
     panelPrincipal.add(scrollPane);
 
 	}
