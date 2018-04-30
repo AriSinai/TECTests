@@ -4,7 +4,7 @@ public class Pregunta{
 	private String pregunta,respuestaCorrecta;
 	private String[] respuestas;
 	private int indexRespuesta;
-	//private Estudiante estudiante;
+	private Estudiante estudiante;
 
 	public Pregunta(){
 		this.pregunta = pregunta;
@@ -21,8 +21,7 @@ public class Pregunta{
 		indexrespuesta-=1;
 		try{
 			if(r[indexrespuesta].equals(respuestaCorrecta)){
-				//estudiante.setVida(estudiante.getVida()+20);
-				System.out.println("Bien");
+				estudiante.setVida(estudiante.getVida()+20);
 			}else{
 				System.out.println("Mal");
 			}
