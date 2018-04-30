@@ -1,4 +1,5 @@
 
+
 public class Pregunta{
 	private String pregunta,respuestaCorrecta;
 	private String[] respuestas;
@@ -16,13 +17,17 @@ public class Pregunta{
 		return pregunta;
 	}
 
-	public void respuestaCorrecta(String[] respuestas, int indexRespuesta, String respuestaCorrecta){
-		indexRespuesta-=1;
-		if(respuestas[indexRespuesta].equals(respuestaCorrecta)){
-			estudiante.setVida(estudiante.getVida()+20);
-			System.out.println("Bien");
-		}else{
-			System.out.println("Mal");
+	public void respuestaCorrecta(String[] r,int indexrespuesta, String respuestaCorrecta){
+		indexrespuesta-=1;
+		try{
+			if(r[indexrespuesta].equals(respuestaCorrecta)){
+				//estudiante.setVida(estudiante.getVida()+20);
+				System.out.println("Bien");
+			}else{
+				System.out.println("Mal");
+			}
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Inserta 1, 2 o 3, porfavor");
 		}
 	}
 
