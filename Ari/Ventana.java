@@ -4,10 +4,13 @@ import java.awt.event.*;
 import java.util.Random;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelRecompensa;
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit;
-	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelStats; 
-	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes, estudianteActual;
+	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML;
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar;
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelStats,panelBotonesInicio, panelImagenDos; 
+
+	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes, estudianteActual, tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon;
+
+
 	private int width, lenght, personaje, contador=0, respuestaSubmit;
 	private Campus mapa;
 	private JTextField tRespuesta;
@@ -15,7 +18,7 @@ public class Ventana extends JFrame{
 	private Profesor profesor;
 	private JScrollPane scrollPane;
 	private JTextArea areaDeHistoria;
-	private String historia,p,respuestaCorrecta;
+	private String historia,p,respuestaCorrecta, historiaPersonaje;
 	private String[] r;
 	private Random random=new Random();
 	private Pregunta pregunta;
@@ -32,19 +35,29 @@ public class Ventana extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(width,lenght);
 		initComponents();
-		
 		setVisible(true);
 	}
 
 	public void initComponents(){
 			panelIntroduccion= new JPanel();
 			panelIntroduccion.setLayout(new GridLayout(1,2));
+			logoIcon= new ImageIcon("Monster.png");
+			panelIntroduccion.add (new JLabel (logoIcon));
 
 
-			panelIntroduccion.add (new JLabel ("Bienvenido"));
-			botonSiguiente=new JButton ("Siguiente");
+
+			iniciarIcon=new ImageIcon("Iniciar.png");
+			cargarPartidoIcon=new ImageIcon("CargarPartida.png");
+			panelBotonesInicio= new JPanel();
+			panelBotonesInicio.setLayout(new GridLayout(2,1));
+			botonSiguiente=new JButton (iniciarIcon);
 			botonSiguiente.addActionListener(new BotonSiguienteListener());
-			panelIntroduccion.add(botonSiguiente);
+			botonCargar= new JButton(cargarPartidoIcon);
+			panelBotonesInicio.add(botonSiguiente);
+			panelBotonesInicio.add(botonCargar);
+
+
+			panelIntroduccion.add(panelBotonesInicio);
 			add(panelIntroduccion);
 		}
 
@@ -86,6 +99,8 @@ public class Ventana extends JFrame{
 		add(panelPersonajes);
 	}
 	public void mapaPrincipal(){
+
+		setSize(1000,1800);
 		panelPrincipal=new JPanel();
 		panelPrincipal.setLayout(new GridLayout(2,2));
 		
@@ -98,20 +113,15 @@ public class Ventana extends JFrame{
 
 		//2
 		panelHistoria= new JPanel();
-		panelHistoria.setLayout(null);
-		labelHistoria= new JLabel("Historia");
-		labelHistoria.setBounds(120,20,180,23);
-		historia= "sjhdjshdjshdhshjdhsjhdjshdjsjhdhs";
-
-		areaDeHistoria=new JTextArea();
-		areaDeHistoria.setText(historia);
-		areaDeHistoria.setBounds(20,50,340,100);
-
+		panelHistoria.setLayout(new GridLayout(2,1));
+		historiaIcon=new ImageIcon("Historia.png");
+		labelHistoria= new JLabel(historiaIcon);
+		labelHistoria.setBounds(120,5,260,50);
 		panelHistoria.setPreferredSize(new Dimension(350,250));
-
+		labelHistoriaHTML=new JLabel();
 		panelHistoria.add(labelHistoria);
-		panelHistoria.add(areaDeHistoria);
-
+		panelHistoria.add(labelHistoriaHTML);
+		imprimirHistoria();
 		scrollPane= new JScrollPane();
 		scrollPane.setBounds(2,2,380,150);
 		scrollPane.setViewportView(panelHistoria);
@@ -122,10 +132,17 @@ public class Ventana extends JFrame{
 		panelFlechas= new JPanel();
 		panelFlechas.setLayout(new GridLayout(3,3));
 	
-		flechaIzquierda = new JButton("Izquierda");
-		flechaDerecha= new JButton("Derecha");
-		flechaArriba= new JButton("Arriba");
-		flechaAbajo= new JButton("Abajo");
+		
+		flechaIzquierdaIcon = new ImageIcon("flechaIzquierda.png");
+		flechaDerechaIcon = new ImageIcon("flechaDerecha.png");
+		flechaArribaIcon = new ImageIcon("flechaArriba.png");
+		flechaAbajoIcon = new ImageIcon("flechaAbajo.png");
+
+		flechaIzquierda = new JButton(flechaIzquierdaIcon);
+		flechaDerecha = new JButton(flechaDerechaIcon);
+		flechaAbajo = new JButton(flechaAbajoIcon);
+		flechaArriba = new JButton(flechaArribaIcon);
+		
 		flechaIzquierda.addActionListener(new BIzquierdaListener());
 		flechaDerecha.addActionListener(new BDerechaListener());
 		flechaArriba.addActionListener(new BArribaListener());
@@ -217,23 +234,57 @@ public class Ventana extends JFrame{
 		mapa.casillas[0][0].estudiante=estudiante;
 	}
 
+	public void imprimirHistoria(){
+
+		String imprimeHistoria = "<html>";
+		imprimeHistoria+= "Llegó la recta final de clases, la estudiante tendrá que pasar todos los exámenes para poder salir del campus ¡Cuidado! Hay profesores a lo largo del Campus que te atacarán con exámenes sorpresa," 
+		+"recuerda que cinco exámenes reprobados y habrás reprobado." +
+			"Recuerda que puedes recoger items que te ayudarán a lo largo de tu travesía ¡Que el juego comience!";
+
+		if(estudiante.getClass().equals("Ari")){
+			imprimeHistoria+="Ari es una chica deportista, pasa su día entrenando y haciendo ejercicio."
+			+"Como item puedes encontrar una pesa voladora. Le encanta ir a competencias de todos los deportes e incluso olimpiadas matemáticas. Tendrás suerte cuando te encuentres al malvado Draculator.";
+			
+
+		}else if(estudiante.getClass().equals("Mercy")){
+			imprimeHistoria+= "Mercy es una chica intelectual, que le encanta leer y aprender constantemente. Como item puedes encontrar reseñas literarias."
+				+"Ha leído muchísimos libros y ni siquiera en fines de semana deja de hacerlo. Tendrás suerte cuando te encuentres al malvado Hannibal Lecturas.";
+
+
+			
+		}else if(estudiante.getClass().equals("Fer")){
+			imprimeHistoria+= "Fer es una chica bromista, pero su verdadera pasión es la historia. Le encanta hacer memes históricos."
+				 +"Como item podrás encontrar cupones de fast food. Tendrás suerte cuando te encuentres al malvado PorfirioGuiaz.";
+		}
+		imprimeHistoria+="</html>";
+		labelHistoriaHTML.setText(imprimeHistoria);
+
+	}
+
 	public void iniciarQuizz(){
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
 		panelImagen = new JPanel();
-		panelImagen.setLayout(new FlowLayout());
 
+		panelImagen.setLayout(new GridLayout(2,1));
 		Fer = new ImageIcon("Fer.jpeg");
 		Ari = new ImageIcon("Ari.jpeg");
+		dueloIcon=new ImageIcon("Duelo.png");
+		labelDuelo=new JLabel(dueloIcon);
+		panelImagen.add(labelDuelo);
+		panelImagenDos=new JPanel();
+		panelImagenDos.setLayout(new GridLayout(1,3));
+
 		labelEst = new JLabel(Fer);
-		labelEst.setBounds(new Rectangle (0,0,0,0));
-		panelImagen.add(labelEst);
-		labelVacio = new JLabel("vs");
-		panelImagen.add(labelVacio);
+		panelImagenDos.add(labelEst);
+		vsIcon=new ImageIcon("vs.png");
+		labelVacio = new JLabel(vsIcon);
+		panelImagenDos.add(labelVacio);
 		labelMaestro = new JLabel(Ari);
-		labelMaestro.setBounds(new Rectangle (0,0,0,0));
-		panelImagen.add(labelMaestro);
+		panelImagenDos.add(labelMaestro);
+		panelImagen.add(panelImagenDos);
 		panelQuiz.add(panelImagen);
+
 
 
 		panelPreguntas = new JPanel();
@@ -247,10 +298,11 @@ public class Ventana extends JFrame{
 		panelSubmit = new JPanel();
 		panelSubmit.setLayout(new GridLayout(3,1));
 		labelRespuesta = new JLabel("Pon 1,2 o 3 según la respuesta");
+		calificarIcon=new ImageIcon("Calificar.png");
 		panelSubmit.add(labelRespuesta);
 		tRespuesta = new JTextField();
 		panelSubmit.add(tRespuesta);
-		bSubmit = new JButton("Submit");
+		bSubmit = new JButton(calificarIcon);
 		bSubmit.addActionListener(new BotonSubmitListener());
 		panelSubmit.add(bSubmit);
 		panelQuiz.add(panelSubmit);
@@ -258,7 +310,8 @@ public class Ventana extends JFrame{
 
 		panelStats = new JPanel();
 		panelStats.setLayout(new GridLayout(3,1));
-		labelStats = new JLabel("Stats");
+		statsIcon=new ImageIcon("Stats.png");
+		labelStats = new JLabel(statsIcon);
 		panelStats.add(labelStats, SwingConstants.CENTER);
 		labelVida = new JLabel("Vida");
 		panelStats.add(labelVida);
