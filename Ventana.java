@@ -438,13 +438,53 @@ public class Ventana extends JFrame{
 	    labelTeacherStats= new JLabel(statsProfesorIcon);
 	    panelStatsPelea.add(labelStudentStats);
 	    panelStatsPelea.add(labelTeacherStats);
-	    panelStatsPelea.add(new JLabel());
-	    panelStatsPelea.add(new JLabel());
-	    panelStatsPelea.add(new JLabel());
-	    panelStatsPelea.add(new JLabel());
-	    panelContenedorPelea.add(panelStatsPelea);
+	    labelVidaEstudiante= new JLabel();
+	    labelVidaProfesor= new JLabel();
+	
+	public void imprimirStatsProfesor(){
 
-	    add(panelContenedorPelea);
+
+	if(profesor.getClass().equals("CaptainLoop")){
+		labelVidaProfesor.setText("Vida profesor: "+ CaptainLoop.getVida());
+	}else if(profesor.getClass().equals("HannibalLecturas")){
+		labelVidaProfesor.setText("Vida profesor: "+ HannibalLecturas.getVida());
+	}else if(profesor.getClass().equals("Draculator")){
+		labelVidaProfesor.setText("Vida profesor: "+ Draculator.getVida());
+
+	}else if(profesor.getClass().equals("PorfirioGuiaz")){
+		labelVidaProfesor.setText("Vida profesor: "+ PorfirioGuiaz.getVida());
+	}
+
+
+	public void imprimirStatsEstudiante(){
+
+
+	if(estudiante.getClass().equals("Ari")){
+		labelVidaEstudiante.setText("Vida Ari: "+ Ari.getVida());
+	}else if(estudiante.getClass().equals("Mercy")){
+		labelVidaEstudiante.setText("Vida Mercy: "+ Mercy.getVida());
+	}else if(estudiante.getClass().equals("Fer")){
+		labelVidaEstudiante.setText("Vida Fer: "+ Fer.getVida());
+	}
+
+	public void imprimirStatsProfesor(){
+
+
+	if(profesor.getClass().equals("CaptainLoop")){
+		labelVidaProfesor.setText("Vida profesor: "+ CaptainLoop.getVida());
+	}else if(profesor.getClass().equals("HannibalLecturas")){
+		labelVidaProfesor.setText("Vida profesor: "+ HannibalLecturas.getVida());
+	}else if(profesor.getClass().equals("Draculator")){
+		labelVidaProfesor.setText("Vida profesor: "+ Draculator.getVida());
+
+	}else if(profesor.getClass().equals("PorfirioGuiaz")){
+		labelVidaProfesor.setText("Vida profesor: "+ PorfirioGuiaz.getVida());
+	}
+
+	panelStatsPelea.add(labelVidaEstudiante);
+	panelStatsPelea.add(labelVidaProfesor);
+	panelContenedorPelea.add(panelStatsPelea);
+	add(panelContenedorPelea);
 
 
 	}
