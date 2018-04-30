@@ -4,9 +4,9 @@ import java.awt.event.*;
 import java.util.Random;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML;
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar;
-	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelStats,panelBotonesInicio, panelImagenDos; 
+	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems;
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar;
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelStats,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea; 
 
 	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes, estudianteActual, tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon;
 
@@ -265,7 +265,6 @@ public class Ventana extends JFrame{
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
 		panelImagen = new JPanel();
-
 		panelImagen.setLayout(new GridLayout(2,1));
 		Fer = new ImageIcon("Fer.jpeg");
 		Ari = new ImageIcon("Ari.jpeg");
@@ -274,7 +273,6 @@ public class Ventana extends JFrame{
 		panelImagen.add(labelDuelo);
 		panelImagenDos=new JPanel();
 		panelImagenDos.setLayout(new GridLayout(1,3));
-
 		labelEst = new JLabel(Fer);
 		panelImagenDos.add(labelEst);
 		vsIcon=new ImageIcon("vs.png");
@@ -324,6 +322,92 @@ public class Ventana extends JFrame{
 
 
 	}
+
+
+	public void iniciarPelea(){
+		panelContenedorPelea= new JPanel();
+		panelContenedorPelea.setLayout(new GridLayout(2,2));
+		
+		//1 Imagenes del duelo
+
+		panelImagen = new JPanel();
+		panelImagen.setLayout(new GridLayout(2,1));
+		Fer = new ImageIcon("Fer.jpeg");
+		Ari = new ImageIcon("Ari.jpeg");
+		dueloIcon=new ImageIcon("Duelo.png");
+		labelDuelo=new JLabel(dueloIcon);
+		panelImagen.add(labelDuelo);
+		panelImagenDos=new JPanel();
+		panelImagenDos.setLayout(new GridLayout(1,3));
+		labelEst = new JLabel(Fer);
+		panelImagenDos.add(labelEst);
+		vsIcon=new ImageIcon("vs.png");
+		labelVacio = new JLabel(vsIcon);
+		panelImagenDos.add(labelVacio);
+		labelMaestro = new JLabel(Ari);
+		panelImagenDos.add(labelMaestro);
+		panelImagen.add(panelImagenDos);
+		panelContenedorPelea.add(panelImagen);
+
+ 
+		// 2 
+	    panelItems= new JPanel();
+	    panelItems.setLayout(new BorderLayout());
+	    ItemsIcon= new ImageIcon("Items.png");
+	    mochilaIcon= new ImageIcon("Mochila.png");
+	    
+	    botonCalcetin= new JButton(" Calcetin Apestoso ");
+	    botonMegafono= new JButton("Súper Megafono");
+	    botonRedbull= new JButton("         Redbull         ");
+
+	    //hacer los listeners
+	    //botonItem1.addActionListener(new botonItem1Listener());
+	    //botonItem2.addActionListener(new botonItem2Listener());
+	    //botonItem3.addActionListener(new botonItem3Listener());
+	    //botonItem1.setBounds(new Rectangle(0,0,50,50));
+	    //botonItem2.setBounds(new Rectangle(0,0,50,50));//* revisar dimension
+	    //botonItem3.setBounds(new Rectangle(0,0,50,50));
+
+	    labelMochila= new JLabel(mochilaIcon);
+	    labelItems= new JLabel(ItemsIcon);
+	    panelItems.add(labelMochila, BorderLayout.PAGE_START);
+	    panelItems.add(labelItems, BorderLayout.PAGE_END);
+	    panelItems.add(botonCalcetin, BorderLayout.LINE_START);
+	    panelItems.add(botonMegafono, BorderLayout.CENTER);
+	    panelItems.add(botonRedbull, BorderLayout.LINE_END);
+	    panelContenedorPelea.add(panelItems);
+
+	    //3
+	    panelPelea= new JPanel();
+	    panelPelea.setLayout(new BorderLayout());
+	    atacarIcon= new ImageIcon("Atacar.png");
+	    botonAtacar= new JButton(atacarIcon);
+	    //botonAtacar.addActionListener(new atacarActionListener());
+	    //botonAtacar.setBounds(new Rectangle(5,5,60,60));
+	    panelPelea.add(botonAtacar, BorderLayout.CENTER);
+	    panelContenedorPelea.add(panelPelea);
+
+	    //4
+	    panelStatsPelea= new JPanel();
+	    panelStatsPelea.setLayout(new GridLayout(3,2));
+	    statsEstudianteIcon= new ImageIcon("StudentStats.png");
+	    statsProfesorIcon= new ImageIcon("TeacherStats.png");
+	    labelStudentStats= new JLabel(statsEstudianteIcon);
+	    labelTeacherStats= new JLabel(statsProfesorIcon);
+	    panelStatsPelea.add(labelStudentStats);
+	    panelStatsPelea.add(labelTeacherStats);
+	    panelStatsPelea.add(new JLabel());
+	    panelStatsPelea.add(new JLabel());
+	    panelStatsPelea.add(new JLabel());
+	    panelStatsPelea.add(new JLabel());
+	    panelContenedorPelea.add(panelStatsPelea);
+
+	    add(panelContenedorPelea);
+
+
+	}
+
+
 	public class BotonSiguienteFERListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Fer(100,200,100);
@@ -416,7 +500,8 @@ public class Ventana extends JFrame{
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarQuizz();
+				iniciarPelea();
+				//iniciarQuizz();
 				revalidate();
 				repaint();
 
