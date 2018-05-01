@@ -39,7 +39,7 @@ public class Pregunta{
 		return respuestaCorrecta;
 	}
 
-	public void submit(Respuesta[] respuestas, int indexRespuesta, Respuesta respuestaCorrecta){
+	public void submit(Respuesta[] respuestas, int indexRespuesta, Respuesta respuestaCorrecta,Estudiante estudiante){
 		indexRespuesta-=1;
 		try{
 			if(respuestas[indexRespuesta].getRespuesta().equals(respuestaCorrecta.getRespuesta())){
