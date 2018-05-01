@@ -505,16 +505,17 @@ public class Ventana extends JFrame{
 
 
 
+	//AQUI ESTAN LOS LISTENERS CON X Y Y YA PRIVADOS
 	public class BIzquierdaListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.y= estudiante.y-1;
+			mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= null;
+			estudiante.setY(estudiante.getY()-1);
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
+				mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= estudiante;
 			}catch(ArrayIndexOutOfBoundsException ex){
 			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].profesor!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
@@ -535,13 +536,13 @@ public class Ventana extends JFrame{
 	public class BDerechaListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.y= estudiante.y+1;
+			mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= null;
+			estudiante.setY(estudiante.getY()+1);
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
+				mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= estudiante;
 			}catch(ArrayIndexOutOfBoundsException ex){
 			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].profesor!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
@@ -562,14 +563,14 @@ public class Ventana extends JFrame{
 
 	public class BArribaListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.x= estudiante.x-1;
+			mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= null;
+			estudiante.setX(estudiante.getX()-1);
 
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
+				mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= estudiante;
 			}catch(ArrayIndexOutOfBoundsException ex){
 			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].profesor!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
@@ -589,13 +590,13 @@ public class Ventana extends JFrame{
 
 	public class BAbajoListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.x= estudiante.x+1;
+			mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= null;
+			estudiante.setX(estudiante.getX()+1);
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
+				mapa.casillas[estudiante.getX()][estudiante.getY()].estudiante= estudiante;
 			}catch(ArrayIndexOutOfBoundsException ex){
 			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].profesor!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
