@@ -268,13 +268,13 @@ public class Ventana extends JFrame{
 
 	public void iniciarQuizz(){
 		//ESTO TAMBIEN ES MIENTRAS
-		Draculator = new ImageIcon("Draculator.jpeg");
+		/*Draculator = new ImageIcon("Draculator.jpeg");
 		PorfirioGuiaz = new ImageIcon("PorfirioGuiaz.jpeg");
 		HannibalLecturas = new ImageIcon("HannibalLecturas.jpeg");
 		CaptainLoop = new ImageIcon("CaptainLoop.jpeg");
 		Ari=new ImageIcon( "Ari.jpeg");
 		Fer=new ImageIcon( "Fer.jpeg");
-		Mercy=new ImageIcon( "Mercy.jpeg");
+		Mercy=new ImageIcon( "Mercy.jpeg");*/
 		
 		pregunta=new Pregunta();
 		panelQuiz = new JPanel();
@@ -301,7 +301,7 @@ public class Ventana extends JFrame{
 		vsIcon=new ImageIcon("vs.png");
 		labelVacio = new JLabel(vsIcon);
 		panelImagenDos.add(labelVacio);
-		//
+		/*
 		if(contador ==0){
 			labelMaestro = new JLabel(Draculator);
 		}else if(contador == 1){
@@ -311,7 +311,7 @@ public class Ventana extends JFrame{
 		}else if(contador == 3){
 			labelMaestro = new JLabel(CaptainLoop);
 		}
-		//
+		*/
 		
 		panelImagenDos.add(labelMaestro);
 		panelImagen.add(panelImagenDos);
@@ -753,12 +753,11 @@ public class Ventana extends JFrame{
 			
 			pregunta.submit(pregunta.getRespuestas(),respuestaSubmit,pregunta.getRespuestaCorrecta(),estudiante);
 			
-			//AQUI NECESITO AYUDA PARA SABER QUE QUITAR
-			/*remove(panelQuiz);
-			pintarMapa();
-			mapaPrincipal();
+			
+			remove(panelQuiz);
+			add(panelPrincipal);
 			revalidate();
-			repaint();*/
+			repaint();
 
 		}
 	}
