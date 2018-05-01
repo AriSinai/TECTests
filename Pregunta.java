@@ -1,27 +1,51 @@
-
-
 public class Pregunta{
-	private String pregunta,respuestaCorrecta;
-	private String[] respuestas;
-	private int indexRespuesta;
+	private String pregunta;
+	private Respuesta[] respuestas;
+	private Respuesta r,respuestaCorrecta;
 	private Estudiante estudiante;
 
-	public Pregunta(){
+	public Pregunta(String pregunta){
 		this.pregunta = pregunta;
-		respuestas = new String[3];
-		this.indexRespuesta = indexRespuesta;
-		this.respuestaCorrecta=respuestaCorrecta;
+		this.respuestaCorrecta = respuestaCorrecta;
+		respuestas = new Respuesta[3];
 	}
 
 	public String getPregunta(){
 		return pregunta;
 	}
 
-	public void respuestaCorrecta(String[] r,int indexrespuesta, String respuestaCorrecta){
-		indexrespuesta-=1;
+	public void setPregunta(String pregunta){
+		this.pregunta = pregunta;
+	}
+
+	public void addRespuesta(Respuesta r, int indexRespuesta){
+		respuestas[indexRespuesta] = r;
+
+	}
+
+	public Respuesta getRespuestas1(int indexRespuesta){
+		return respuestas[indexRespuesta];
+	}
+
+	public Respuesta[] getRespuestas(){
+		return respuestas;
+	}
+
+	public void setRespuestaCorrecta(Respuesta respuestaCorrecta){
+		this.respuestaCorrecta = respuestaCorrecta;
+	}
+
+	public Respuesta getRespuestaCorrecta(){
+		return respuestaCorrecta;
+	}
+
+	public void submit(Respuesta[] respuestas, int indexRespuesta, Respuesta respuestaCorrecta){
+		indexRespuesta-=1;
 		try{
-			if(r[indexrespuesta].equals(respuestaCorrecta)){
+			if(respuestas[indexRespuesta].getRespuesta().equals(respuestaCorrecta.getRespuesta())){
 				estudiante.setVida(estudiante.getVida()+20);
+				System.out.println("Bien");
+				
 			}else{
 				System.out.println("Mal");
 			}
