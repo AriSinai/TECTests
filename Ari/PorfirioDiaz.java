@@ -1,18 +1,29 @@
 public class PorfirioDiaz extends Profesor{
-	private String ruta = "PorfirioDiaz.png";
+	private String imagenCompleta = "PorfirioDiaz.png";
+	private String imagenCara = "caraPorfirioDiaz.png";
 
 	public PorfirioDiaz (int ataque,int vida){
 		super(ataque,vida);
 	}
 
-	public void setRuta(String ruta){
+	public void setImagenCompleta(String imagenCompleta){
 
-		this.ruta=ruta;
+		this.imagenCompleta=imagenCompleta;
 
 	}
 
-	public String getRuta(){
-		return ruta;
+	public String getImagenCompleta(){
+		return imagenCompleta;
+
+	}
+	public void setImagenCara(String imagenCara){
+
+		this.imagenCara=imagenCara;
+
+	}
+
+	public String getImagenCara(){
+		return imagenCara;
 
 	}
 

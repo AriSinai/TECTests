@@ -1,30 +1,31 @@
 public class Fer extends Estudiante{
-	private String ruta = "Fer.png";
-	private int ataque= 60;
+	private String imagenCompleta = "Fer.png";
+	private String imagenCara= "caraFer.png";
+
 
 	public Fer (int ataque,int defensa, int vida){
 		super(ataque, defensa,vida);
 	}
 
-	public void setRuta(String ruta){
+	public void setImagenCompleta(String imagenCompleta){
 
-		this.ruta=ruta;
+		this.imagenCompleta=imagenCompleta;
+
+	}
+
+	public String getImagenCompleta(){
+		return imagenCompleta;
+
+	}
+	public void setImagenCara(String imagenCara){
+
+		this.imagenCara=imagenCara;
 
 	}
 
-	public String getRuta(){
-		return ruta;
+	public String getImagenCara(){
+		return imagenCara;
 
-	}
-		
-	
-	public void setAtaque(int ataque){
-		this.ataque=ataque;
-	}
-	
-	public int getAtaque(){
-		return ataque;
-		
 	}
 
 }

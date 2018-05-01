@@ -1,19 +1,30 @@
 public class CaptainLoop extends Profesor{
-	private String ruta = "CaptainLoop.png";
+	private String imagenCompleta = "CaptainLoop.png";
+	private String imagenCara = "caraCaptainLoop.png";
 
 
 	public CaptainLoop (int ataque,int vida){
 		super(ataque,vida);
 	}
 
-	public void setRuta(String ruta){
+	public void setImagenCompleta(String imagenCompleta){
 
-		this.ruta=ruta;
+		this.imagenCompleta=imagenCompleta;
 
 	}
 
-	public String getRuta(){
-		return ruta;
+	public String getImagenCompleta(){
+		return imagenCompleta;
+
+	}
+	public void setImagenCara(String imagenCara){
+
+		this.imagenCara=imagenCara;
+
+	}
+
+	public String getImagenCara(){
+		return imagenCara;
 
 	}
 

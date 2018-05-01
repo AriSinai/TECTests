@@ -1,19 +1,29 @@
 public class HannibalLecturas extends Profesor{
-	private String ruta = "HannibalLecturas.png";
+	private String imagenCompleta = "HannibalLecturas.png";
+	private String imagenCara = "caraHannibalLecturas.png";
 
 	public HannibalLecturas (int ataque,int vida){
 		super(ataque,vida);
 	}
 
-	public void setRuta(String ruta){
+	public void setImagenCompleta(String imagenCompleta){
 
-		this.ruta=ruta;
-
-	}
-
-	public String getRuta(){
-		return ruta;
+		this.imagenCompleta=imagenCompleta;
 
 	}
 
+	public String getImagenCompleta(){
+		return imagenCompleta;
+
+	}
+	public void setImagenCara(String imagenCara){
+
+		this.imagenCara=imagenCara;
+
+	}
+
+	public String getImagenCara(){
+		return imagenCara;
+
+	}
 }

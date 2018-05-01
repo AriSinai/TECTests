@@ -5,7 +5,7 @@ import java.util.Random;
 public class Ventana extends JFrame{
 
 	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems;
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar;
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida;
 	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelStats,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea; 
 
 	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes, estudianteActual, tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon;
@@ -29,7 +29,7 @@ public class Ventana extends JFrame{
 	public Ventana(){
 		super("Test Fest in TEC");
 		mapa= new Campus(10,10);
-		llenarCasillas();
+		//llenarCasillas();
 		width=700;
 		lenght=500;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -100,6 +100,7 @@ public class Ventana extends JFrame{
 	}
 	public void mapaPrincipal(){
 
+		
 		setSize(1000,1800);
 		panelPrincipal=new JPanel();
 		panelPrincipal.setLayout(new GridLayout(2,2));
@@ -140,6 +141,7 @@ public class Ventana extends JFrame{
 
 		flechaIzquierda = new JButton(flechaIzquierdaIcon);
 		flechaDerecha = new JButton(flechaDerechaIcon);
+		botonGuardarPartida=new JButton("Guardar Partida");
 		flechaAbajo = new JButton(flechaAbajoIcon);
 		flechaArriba = new JButton(flechaArribaIcon);
 		
@@ -153,7 +155,7 @@ public class Ventana extends JFrame{
 		panelFlechas.add(flechaArriba);
 		panelFlechas.add(new JLabel());
 		panelFlechas.add(flechaIzquierda);
-		panelFlechas.add(new JLabel());
+		panelFlechas.add(botonGuardarPartida);
 		panelFlechas.add(flechaDerecha);
 		panelFlechas.add(new JLabel());
 		panelFlechas.add(flechaAbajo);
@@ -183,10 +185,12 @@ public class Ventana extends JFrame{
 		panel3.setLayout(new GridLayout(mapa.casillas.length,mapa.casillas[0].length));
 		for(int i=0;i<mapa.casillas.length;i++){
 			for(int j=0;j<mapa.casillas[i].length;j++){
-				if(mapa.casillas[i][j].estudiante==null){
-					panel3.add(new JLabel("[  ]"));
-				}else{
+				if(mapa.casillas[i][j].getEstudiante()==null){
+					panel3.add(new JLabel("[ V ]"));
+				}else if(mapa.casillas[i][j].getEstudiante()==estudiante){
 					panel3.add(new JLabel(estudiante.getClass().getSimpleName()));
+				}else{
+					panel3.add(new JLabel("[ P ]"));
 				}
 			}
 		}
@@ -202,36 +206,37 @@ public class Ventana extends JFrame{
 		int limiteSuperior = 3;
 		int limiteSuperiorAbierto = limiteSuperior + 1;
 		int numeroAleatorio = limiteInferior + random.nextInt(limiteSuperiorAbierto - limiteInferior);
-
 		for(int i=0;i<mapa.casillas.length;i++){
 			for(int j=0;j<mapa.casillas[i].length;j++){
 				mapa.casillas[i][j]= new Casilla();
 				if(Math.random()>=0.5){
+
 					if(numeroAleatorio ==0){
+						
+						mapa.casillas [i][j].setProfesor(new Draculator(10,100));
+						
 
-						mapa.casillas [i][j].profesor=new Draculator(100,100);
-
+						
 					}
-					if(numeroAleatorio ==1){
-						mapa.casillas [i][j].profesor=new PorfirioDiaz(100,100);
 
+					
+					else if(numeroAleatorio ==1){
+						mapa.casillas [i][j].setProfesor(new PorfirioDiaz(10,100));
 					}
+					/*
 						if(numeroAleatorio ==2){
-
-						mapa.casillas [i][j].profesor=new CaptainLoop(100,100);
-
+						mapa.casillas [i][j].profesor=new CaptainLoop(10,100);
 					}
 						if(numeroAleatorio ==3){
-	
-						mapa.casillas [i][j].profesor=new HannibalLecturas(100,100);
-
+						mapa.casillas [i][j].profesor=new HannibalLecturas(10,100);
 					}
+					*/
 
 				}
 				
 			}
 		}
-		mapa.casillas[0][0].estudiante=estudiante;
+		mapa.casillas[0][0].setEstudiante(estudiante);
 	}
 
 	public void imprimirHistoria(){
@@ -262,6 +267,7 @@ public class Ventana extends JFrame{
 	}
 
 	public void iniciarQuizz(){
+		pregunta=new Pregunta();
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
 		panelImagen = new JPanel();
@@ -317,9 +323,6 @@ public class Ventana extends JFrame{
 		panelStats.add(labelRecompensa);
 		panelQuiz.add(panelStats);
 		add(panelQuiz);
-
-
-
 
 	}
 
@@ -381,8 +384,9 @@ public class Ventana extends JFrame{
 	    panelPelea= new JPanel();
 	    panelPelea.setLayout(new BorderLayout());
 	    atacarIcon= new ImageIcon("Atacar.png");
+
 	    botonAtacar= new JButton(atacarIcon);
-	    //botonAtacar.addActionListener(new atacarActionListener());
+	    botonAtacar.addActionListener(new atacarActionListener());
 	    //botonAtacar.setBounds(new Rectangle(5,5,60,60));
 	    panelPelea.add(botonAtacar, BorderLayout.CENTER);
 	    panelContenedorPelea.add(panelPelea);
@@ -404,7 +408,6 @@ public class Ventana extends JFrame{
 
 	    add(panelContenedorPelea);
 
-
 	}
 
 
@@ -412,7 +415,7 @@ public class Ventana extends JFrame{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Fer(100,200,100);
 			//estudianteActual= new ImageIcon(estudiante.getRuta());
-
+			llenarCasillas();
 			remove(panelPersonajes);
 			mapaPrincipal();
 			revalidate();
@@ -426,7 +429,8 @@ public class Ventana extends JFrame{
 	public class BotonSiguienteARIListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Ari(100,200,100);
-			//estudianteActual= new ImageIcon(estudiante.getRuta());
+			//estudianteActual= new ImageIcon(estudiante.getImagenCompleta());
+			llenarCasillas();
 			remove(panelPersonajes);
 			mapaPrincipal();
 			revalidate();
@@ -437,13 +441,12 @@ public class Ventana extends JFrame{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Mercy(100,200,100);
 			//estudianteActual= new ImageIcon(estudiante.getRuta());
-
+			llenarCasillas();
 			remove(panelPersonajes);
 			mapaPrincipal();
 			revalidate();
 			repaint();	
-		}
-			
+		}		
 
 	}
 	
@@ -456,60 +459,111 @@ public class Ventana extends JFrame{
 		}
 	}	
 
+	public class atacarActionListener implements ActionListener{
+        public void actionPerformed (ActionEvent e){
+        	System.out.println(profesor.getClass());
+  			//estudiante.atacar(profesor); //profesor
+            //profesor.atacar(estudiante);
 
+            //imprimirStatsEstudiante();
+            //imprimirStatsProfesor();
+            /*
+            if(estudiante.getVida()<=0){
+                 //Gameover
 
+            }
+            if(profesor.getVida()<=0){
+            	System.out.println("Mataste a "+ profesor.getClass().getSimpleName());
+                //labelVidaProfesor.setText("Has derrotado al Profesor");
+                //historiaString=historiaString+"matar <br/>"
+             }
+             */
+		}
+	}
 
 
 	public class BIzquierdaListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.y= estudiante.y-1;
+		
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
-			}catch(ArrayIndexOutOfBoundsException ex){
-			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(null);
+			
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			
+			estudiante.setY(estudiante.getY()-1);
+			
+				
+			try{
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarQuizz();
+				iniciarPelea();
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
+				//iniciarQuizz();
 				revalidate();
 				repaint();
 
-			}else{
+			}
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			try{
+			if(mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()== null){
 				
 				panelMapa.remove(panel3);
 				pintarMapa();
 
 			}
-
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
 		}
 	}
 
+	
 	public class BDerechaListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.y= estudiante.y+1;
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
-			}catch(ArrayIndexOutOfBoundsException ex){
-			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(null);
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+
+			}
+
+			estudiante.setY(estudiante.getY()+1);
+			
+			
+			
+			try{
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
+
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
 				iniciarPelea();
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
 				//iniciarQuizz();
 				revalidate();
 				repaint();
 
-			}else{
+			}
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			try{
+			if(mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()== null){
 				
 				panelMapa.remove(panel3);
 				pintarMapa();
 
+			}
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
 			}
 
 		}
@@ -517,57 +571,88 @@ public class Ventana extends JFrame{
 
 	public class BArribaListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.x= estudiante.x-1;
 
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
-			}catch(ArrayIndexOutOfBoundsException ex){
-			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(null);
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			estudiante.setX(estudiante.getX()-1);
+
+			
+			
+			
+			try{
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarQuizz();
+				iniciarPelea();
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
+				//iniciarQuizz();
 				revalidate();
 				repaint();
 
-			}else{
+			}
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			try{
+			if(mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()== null){
 				
 				panelMapa.remove(panel3);
 				pintarMapa();
 
 			}
-
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}	
 		}
 	}
 
 	public class BAbajoListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			mapa.casillas[estudiante.x][estudiante.y].estudiante= null;
-			estudiante.x= estudiante.x+1;
+
 			try{
-				mapa.casillas[estudiante.x][estudiante.y].estudiante= estudiante;
-			}catch(ArrayIndexOutOfBoundsException ex){
-			}	
-			if (mapa.casillas[estudiante.x][estudiante.y].profesor!= null){
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(null);
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			estudiante.setX(estudiante.getX()+1);
+			
+			
+			
+			try{
+			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
+			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarQuizz();
+				iniciarPelea();
+				profesor=mapa.casillas.getProfesor();
+				//iniciarQuizz();
 				revalidate();
 				repaint();
 
-			}else{
+			}
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
+			try{
+			if(mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()== null){
 				
 				panelMapa.remove(panel3);
 				pintarMapa();
 
 			}
-
+			}
+			catch(ArrayIndexOutOfBoundsException ex){
+			}
 
 		}
 	}
+
 
 	public void imprimirPreguntas(){
 		// Aqui se van a imprimir las preguntas segun el contador, para que no se repitan
