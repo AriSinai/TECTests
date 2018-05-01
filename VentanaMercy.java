@@ -20,6 +20,7 @@ public class Ventana extends JFrame{
 	private JTextArea areaDeHistoria;
 	private String historia,p, historiaPersonaje;
 	private Random random=new Random();
+	//ESTOS DOS TAMBIEN LOS AGREGUE
 	private Pregunta pregunta;
 	private Respuesta r1,r2,r3,respuestaCorrecta;
 
@@ -269,7 +270,6 @@ public class Ventana extends JFrame{
 	}
 
 	public void iniciarQuizz(){
-		//pregunta = new Pregunta;
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
 		panelImagen = new JPanel();
