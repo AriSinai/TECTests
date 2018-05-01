@@ -680,7 +680,7 @@ public class Ventana extends JFrame{
 			tRespuesta.setText("");
 
 			
-			pregunta.submit(pregunta.getRespuestas(),respuestaSubmit,pregunta.getRespuestaCorrecta());
+			pregunta.submit(pregunta.getRespuestas(),respuestaSubmit,pregunta.getRespuestaCorrecta(),estudiante);
 			/*remove(panelQuiz);
 			pintarMapa();
 			mapaPrincipal();
