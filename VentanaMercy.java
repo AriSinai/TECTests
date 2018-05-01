@@ -280,6 +280,8 @@ public class Ventana extends JFrame{
 		panelImagen.add(labelDuelo);
 		panelImagenDos=new JPanel();
 		panelImagenDos.setLayout(new GridLayout(1,3));
+		
+		// AGREGUE ESTO !! PARA QUE SE VEAN LAS FOTOS CON CADA UNA DE NOSOTRAS
 		if(estudiante.getClass().getSimpleName().equals("Fer")){
 			labelEst = new JLabel(Fer);
 		}else if(estudiante.getClass().getSimpleName().equals("Ari")){
@@ -287,11 +289,13 @@ public class Ventana extends JFrame{
 		}else if(estudiante.getClass().getSimpleName().equals("Mercy")){
 			labelEst = new JLabel(Mercy);
 		}
+		// HASTA AQUI!! SI QUIERES BORRA Y VUELVE A COPIAR ESTE METODO
+		
 		panelImagenDos.add(labelEst);
 		vsIcon=new ImageIcon("vs.png");
 		labelVacio = new JLabel(vsIcon);
 		panelImagenDos.add(labelVacio);
-
+		//TAMBIEN ESTE, COMO LAS PREGUNTAS VAN A CAMBIAR CON CONTADOR ASI SE VAN A CAMBIAR LAS IMAGENES
 		if(contador ==0){
 			labelMaestro = new JLabel(Draculator);
 		}else if(contador == 1){
@@ -610,6 +614,7 @@ public class Ventana extends JFrame{
 		}
 	}
 
+	//TODO ESTE METODO LO CAMBIE, YA QUE AHORA TAMBIEN HAY RESPUESTAS QUE SE METEN A LAS PREGUNTAS 
 	public void imprimirPreguntas(){
 		// Aqui se van a imprimir las preguntas segun el contador, para que no se repitan
 		String imprime = "<html>";
@@ -665,7 +670,7 @@ public class Ventana extends JFrame{
 		labelPregunta.setText(imprime);
 	} 
 
-
+	//ESTE METODO TAMBIEN LO CAMBIE YA QUE LAS VARIABLES DE ARRIBA NO SON LAS MISMAS
 	public class BotonSubmitListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			//nuevo
@@ -679,6 +684,8 @@ public class Ventana extends JFrame{
 
 			
 			pregunta.submit(pregunta.getRespuestas(),respuestaSubmit,pregunta.getRespuestaCorrecta(),estudiante);
+			
+			//AQUI NECESITO AYUDA PARA SABER QUE QUITAR
 			/*remove(panelQuiz);
 			pintarMapa();
 			mapaPrincipal();
@@ -687,7 +694,7 @@ public class Ventana extends JFrame{
 
 		}
 	}
-
+	//ESTE TAMBIEN ES NUEVO E IMPRIME LOS STATS EN EL PANEL Y TE DICE CUANTO TE VAN A DAR 
 	public void imprimeStatsQuiz(){
 		String imprimeStats = "<html>";
 		imprimeStats += "Vida: <br/>";
