@@ -18,10 +18,10 @@ public class Ventana extends JFrame{
 	private Profesor profesor;
 	private JScrollPane scrollPane;
 	private JTextArea areaDeHistoria;
-	private String historia,p,respuestaCorrecta, historiaPersonaje;
-	private String[] r;
+	private String historia,p,historiaPersonaje;
 	private Random random=new Random();
 	private Pregunta pregunta;
+	private Respuesta r1,r2,r3,respuestaCorrecta;
 
 
 
@@ -267,24 +267,52 @@ public class Ventana extends JFrame{
 	}
 
 	public void iniciarQuizz(){
+		//ESTO TAMBIEN ES MIENTRAS
+		Draculator = new ImageIcon("Draculator.jpeg");
+		PorfirioGuiaz = new ImageIcon("PorfirioGuiaz.jpeg");
+		HannibalLecturas = new ImageIcon("HannibalLecturas.jpeg");
+		CaptainLoop = new ImageIcon("CaptainLoop.jpeg");
+		Ari=new ImageIcon( "Ari.jpeg");
+		Fer=new ImageIcon( "Fer.jpeg");
+		Mercy=new ImageIcon( "Mercy.jpeg");
+		
 		pregunta=new Pregunta();
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
 		panelImagen = new JPanel();
 		panelImagen.setLayout(new GridLayout(2,1));
-		Fer = new ImageIcon("Fer.jpeg");
-		Ari = new ImageIcon("Ari.jpeg");
+		
 		dueloIcon=new ImageIcon("Duelo.png");
 		labelDuelo=new JLabel(dueloIcon);
 		panelImagen.add(labelDuelo);
 		panelImagenDos=new JPanel();
 		panelImagenDos.setLayout(new GridLayout(1,3));
-		labelEst = new JLabel(Fer);
+		//ESTO SE VA A CAMBIAR PERO MIENTRAS
+		if(estudiante.getClass().getSimpleName().equals("Fer")){
+			labelEst = new JLabel(Fer);
+		}else if(estudiante.getClass().getSimpleName().equals("Ari")){
+			labelEst = new JLabel(Ari);
+		}else if(estudiante.getClass().getSimpleName().equals("Mercy")){
+			labelEst = new JLabel(Mercy);
+		}
+		//
+		
 		panelImagenDos.add(labelEst);
 		vsIcon=new ImageIcon("vs.png");
 		labelVacio = new JLabel(vsIcon);
 		panelImagenDos.add(labelVacio);
-		labelMaestro = new JLabel(Ari);
+		//
+		if(contador ==0){
+			labelMaestro = new JLabel(Draculator);
+		}else if(contador == 1){
+			labelMaestro = new JLabel(PorfirioGuiaz);
+		}else if(contador == 2){
+			labelMaestro = new JLabel(HannibalLecturas);
+		}else if(contador == 3){
+			labelMaestro = new JLabel(CaptainLoop);
+		}
+		//
+		
 		panelImagenDos.add(labelMaestro);
 		panelImagen.add(panelImagenDos);
 		panelQuiz.add(panelImagen);
@@ -320,6 +348,7 @@ public class Ventana extends JFrame{
 		labelVida = new JLabel("Vida");
 		panelStats.add(labelVida);
 		labelRecompensa = new JLabel("Recompensa");
+		imprimeStatsQuiz();
 		panelStats.add(labelRecompensa);
 		panelQuiz.add(panelStats);
 		add(panelQuiz);
@@ -658,69 +687,88 @@ public class Ventana extends JFrame{
 		// Aqui se van a imprimir las preguntas segun el contador, para que no se repitan
 		String imprime = "<html>";
 		if(contador == 0){
-			 p = "¿Que es un polinomio?";
-			 r = new String[3];
-			r[0]="Una ecuacion irracional";
-			r[1]="Es la suma-resta de un conjunto de monomios";
-			r[2]="Una ecuacion canonica";
-			respuestaCorrecta = r[1];
-			imprime += p+"<br/>";
-			imprime +="1 - "+r[0]+"<br/>";
-			imprime+="2 - "+r[1]+"<br/>";
-			imprime+="3 - "+r[2]+"<br/>";
+			pregunta= new Pregunta("¿Que es un polinomio?");
+			r1=new Respuesta("Una ecuacion irracional");
+			pregunta.addRespuesta(r1,0);
+			r2=new Respuesta("Es la suma-resta de un conjunto de monomios");
+			pregunta.addRespuesta(r2,1);
+			r3=new Respuesta("Una ecuacion canonica");
+			pregunta.addRespuesta(r3,2);
 			contador=1;
+			pregunta.setRespuestaCorrecta(new Respuesta("Es la suma-resta de un conjunto de monomios"));
+			
 		}else if(contador ==1){
-			p = "¿Que cultura recibe el nombre de CULTURA MADRE?";
-			r = new String[3];
-			r[0]="Olmeca";
-			r[1]="Azteca";
-			r[2]="Mexica";
-			respuestaCorrecta = r[0];
-			imprime += p+"<br/>";
-			imprime +="1 - "+r[0]+"<br/>";
-			imprime+="2 - "+r[1]+"<br/>";
-			imprime+="3 - "+r[2]+"<br/>";
+			pregunta= new Pregunta("¿Que cultura recibe el nombre de CULTURA MADRE?");
+			r1=new Respuesta("Olmeca");
+			pregunta.addRespuesta(r1,0);
+			r2=new Respuesta("Azteca");
+			pregunta.addRespuesta(r2,1);
+			r3=new Respuesta("Mexica");
+			pregunta.addRespuesta(r3,2);
+			pregunta.setRespuestaCorrecta(new Respuesta("Olmeca"));
+	
 			contador=2;
 		}else if(contador ==2){
-			p = "¿Quien creo al personaje de Sherlock Holmes?";
-			r = new String[3];
-			r[0]="Arthur Conan Doyle";
-			r[1]="Agatha Christie";
-			r[2]="Rudyard Kipling";
-			respuestaCorrecta = r[0];
-			imprime += p+"<br/>";
-			imprime +="1 - "+r[0]+"<br/>";
-			imprime+="2 - "+r[1]+"<br/>";
-			imprime+="3 - "+r[2]+"<br/>";
-			contador=2;
+			pregunta= new Pregunta("¿Quien creo al personaje de Sherlock Holmes?");
+			r1=new Respuesta("Arthur Conan Doyle");
+			pregunta.addRespuesta(r1,0);
+			r2=new Respuesta("Agatha Christie");
+			pregunta.addRespuesta(r2,1);
+			r3=new Respuesta("Rudyard Kipling");
+			pregunta.addRespuesta(r3,2);
+			pregunta.setRespuestaCorrecta(new Respuesta("Arthur Conan Doyle"));
+			
+			contador=1;
 		}else if(contador ==3){
-			p = "¿Cual es la palabra reservada para el uso de una interfaz en otra clase?";
-			r = new String[3];
-			r[0]="Abstract";
-			r[1]="Static";
-			r[2]="Implements";
-			respuestaCorrecta = r[2];
-			imprime += p+"<br/>";
-			imprime +="1 - "+r[0]+"<br/>";
-			imprime+="2 - "+r[1]+"<br/>";
-			imprime+="3 - "+r[2]+"<br/>";
-			contador=0;
+			pregunta= new Pregunta("¿Cual es la palabra reservada para el uso de una interfaz en otra clase?");
+			r1=new Respuesta("Abstract");
+			pregunta.addRespuesta(r1,0);
+			r2=new Respuesta("Static");
+			pregunta.addRespuesta(r2,1);
+			r3=new Respuesta("Implements");
+			pregunta.addRespuesta(r3,2);
+			pregunta.setRespuestaCorrecta(new Respuesta("Implements"));
+			contador =1;
 		}
+		imprime += pregunta.getPregunta()+"<br/>";
+		imprime +="1 - "+r1.getRespuesta()+"<br/>";
+		imprime+="2 - "+r2.getRespuesta()+"<br/>";			
+		imprime+="3 - "+r3.getRespuesta()+"<br/>";
 		imprime+="</html>";
 		labelPregunta.setText(imprime);
 	} 
 
-
+	//ESTE METODO TAMBIEN LO CAMBIE YA QUE LAS VARIABLES DE ARRIBA NO SON LAS MISMAS
 	public class BotonSubmitListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			
-			respuestaSubmit = Integer.parseInt(tRespuesta.getText());
-			tRespuesta.setText("");
-			//aqui se va a tener que poner una exepcion ya que si pica otra cosa que no sea 1,2,3 aparece una excepcion NullPointerException
-			pregunta.respuestaCorrecta(r,respuestaSubmit,respuestaCorrecta);
+			//nuevo
+			try{
+				respuestaSubmit = Integer.parseInt(tRespuesta.getText());
+			}catch(NumberFormatException ex){
+				labelRespuesta.setText("Porfavor inserta un numero valido 1, 2 o 3");
+			}
 
+			tRespuesta.setText("");
+
+			
+			pregunta.submit(pregunta.getRespuestas(),respuestaSubmit,pregunta.getRespuestaCorrecta(),estudiante);
+			
+			//AQUI NECESITO AYUDA PARA SABER QUE QUITAR
+			/*remove(panelQuiz);
+			pintarMapa();
+			mapaPrincipal();
+			revalidate();
+			repaint();*/
 
 		}
+	}
+	//ESTE TAMBIEN ES NUEVO E IMPRIME LOS STATS EN EL PANEL Y TE DICE CUANTO TE VAN A DAR 
+	public void imprimeStatsQuiz(){
+		String imprimeStats = "<html>";
+		imprimeStats += "Vida: <br/>";
+		imprimeStats += estudiante.getVida();
+		labelVida.setText(imprimeStats);
+		labelRecompensa.setText("La Recompensa por este Quiz es de +20 en vida");
 	}
 
 }
