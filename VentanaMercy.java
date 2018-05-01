@@ -280,15 +280,13 @@ public class Ventana extends JFrame{
 		panelImagen.add(labelDuelo);
 		panelImagenDos=new JPanel();
 		panelImagenDos.setLayout(new GridLayout(1,3));
-		/*
-		if(estudiante.getClass().equals("class Fer")){
+		if(estudiante.getClass().getSimpleName().equals("Fer")){
 			labelEst = new JLabel(Fer);
-		}else if(estudiante.getClass().equals("class Ari")){
+		}else if(estudiante.getClass().getSimpleName().equals("Ari")){
 			labelEst = new JLabel(Ari);
-		}else if(estudiante.getClass().equals("class Mercy")){
+		}else if(estudiante.getClass().getSimpleName().equals("Mercy")){
 			labelEst = new JLabel(Mercy);
-		}*/
-		labelEst = new JLabel(Fer);
+		}
 		panelImagenDos.add(labelEst);
 		vsIcon=new ImageIcon("vs.png");
 		labelVacio = new JLabel(vsIcon);
