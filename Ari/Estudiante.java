@@ -1,6 +1,17 @@
 public class Estudiante extends Personaje{
 	private int x;
 	private int y;
+	private String imagenCompleta ;
+	private String imagenCara;
+
+
+	//COntructor NUEVO
+	public Estudiante (int ataque,int defensa, int vida, String imagenCompleta, String imagenCara){
+		super(ataque, defensa,vida);
+		this.imagenCompleta=imagenCompleta;
+		this.imagenCara=imagenCara;
+	}
+	
 
 	public void setX(int x){
 
@@ -23,11 +34,28 @@ public class Estudiante extends Personaje{
 
 	}
 	
-	public Estudiante (int ataque,int defensa, int vida){
-		super(ataque, defensa,vida);
-	}
-	
 
+
+	public void setImagenCompleta(String imagenCompleta){
+
+		this.imagenCompleta=imagenCompleta;
+
+	}
+
+	public String getImagenCompleta(){
+		return imagenCompleta;
+
+	}
+	public void setImagenCara(String imagenCara){
+
+		this.imagenCara=imagenCara;
+
+	}
+
+	public String getImagenCara(){
+		return imagenCara;
+
+	}
 
 	
 }
