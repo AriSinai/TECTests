@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.Random;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal;
+	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor;
 
 	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida;
 
@@ -12,19 +12,22 @@ public class Ventana extends JFrame{
 
 	private ImageIcon iconFer,iconAri,iconMercy, iconEscoge, iconPersonajes, iconEstudianteActualCompleto, iconEstudianteActualCara, iconProfesorActualCompleto,iconProfesorActualCara,tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon, iconStatsPrincipal;
 
-	private int width, lenght, personaje, contador=0, respuestaSubmit, profesores,quizzes,items,quizHisto,quizMate,quizEspa,quizLoop;
+	private int width, lenght, personaje, contador=0, respuestaSubmit, profesores,quizzes,items,quizHisto,quizMate,quizEspa,quizLoop,itemCalcetin,itemRedbull,itemMegafono;
 	private Campus mapa;
 	private JTextField tRespuesta;
 	private Estudiante estudiante;
 	private Profesor profesor;
 	private JScrollPane scrollPane;
 	private JTextArea areaDeHistoria;
-	private String historia,p,historiaPersonaje;
+	private String historia,p,historiaPersonaje,imprimeHistoria;
 	private Random random=new Random();
 	private Pregunta pregunta;
 	private Respuesta r1,r2,r3,respuestaCorrecta;
 	private Item item;
 	private Quiz quiz;
+	private CalcetinSudado[] calcetinSudados;
+	private Megafono[] megafonos;
+	private Redbull[] redbulls;
 
 	public Ventana(){
 		super("Monster TEC");
@@ -32,6 +35,10 @@ public class Ventana extends JFrame{
 		int items=0;
 		int profesores=0;
 		int quizzes=0;
+		int itemMegafono=0;
+		int itemCalcetin=0;
+		int itemRedbull=0;
+			
 		//llenarCasillas();
 		width=700;
 		lenght=500;
@@ -191,12 +198,12 @@ public class Ventana extends JFrame{
 		labelVida=new JLabel();
 		labelAtaque=new JLabel();
 		labelNombre=new JLabel();
-		labelVida.setText("Vida: "+estudiante.getVida());
-		labelAtaque.setText("ataque: "+estudiante.getAtaque());
 		labelNombre.setText("Eres la estudiante: "+estudiante.getClass().getSimpleName());
 		panelStatsEstudiantePrincipal.add(labelNombre);
 		panelStatsEstudiantePrincipal.add(labelVida);
+		imprimirStatsPanelPrincipal();
 		panelStatsEstudiantePrincipal.add(labelAtaque);
+		imprimirCantidadItems();
 		panelStatsPrincipal.add(panelStatsEstudiantePrincipal,BorderLayout.CENTER);
 
 		panelPrincipal.add(panelStatsPrincipal);
@@ -240,6 +247,8 @@ public class Ventana extends JFrame{
 		int limiteInferior = 0;
 		int limiteSuperior = 3;
 		int limiteSuperiorAbierto = limiteSuperior + 1;
+		
+
 
 		
 		
@@ -276,16 +285,23 @@ public class Ventana extends JFrame{
 				if(items<8){
 					if(numeroAleatorio ==0 && Math.random()>=0.8){
 						mapa.casillas [i][j].setItem(new CalcetinSudado());
+
+					
 						items++;
+
 					}
 		
 					if(numeroAleatorio ==1 && Math.random()>=0.8){
 						mapa.casillas [i][j].setItem(new Redbull());
+
+					
 						items++;
 					}
 					
 					if(numeroAleatorio ==2 && Math.random()>=0.8){
 						mapa.casillas [i][j].setItem(new Megafono());
+
+						
 						items++;
 		
 
@@ -329,7 +345,27 @@ public class Ventana extends JFrame{
 
 
 		mapa.casillas[0][0].setEstudiante(estudiante);
+		
 
+	}
+
+	public void imprimirStatsPanelPrincipal(){
+		String imprimeStatsStudiante="<html>";
+		imprimeStatsStudiante+="STATS PERSONAJE <br/> Vida: " + estudiante.getVida()+"<br/> Defensa: "+ estudiante.getDefensa()+"<br/> Ataque: "+estudiante.getAtaque();
+		
+
+		imprimeStatsStudiante += "</html>";
+		
+		labelVida.setText(imprimeStatsStudiante);
+		
+
+
+	}
+	public void imprimirCantidadItems(){
+		String imprimeItems="<html>";
+		imprimeItems+="OBJETOS EN LA MOCHILA <br/> Calcetines Sudados: <br/> Megafonos: <br/> Redbulls: ";
+		imprimeItems += "</html>";
+		labelAtaque.setText(imprimeItems);
 	}
 
 	public void imprimirHistoria(){
@@ -451,13 +487,6 @@ public class Ventana extends JFrame{
 	    botonMegafono= new JButton("Súper Megafono");
 	    botonRedbull= new JButton("         Redbull         ");
 
-	    //hacer los listeners
-	    //botonItem1.addActionListener(new botonItem1Listener());
-	    //botonItem2.addActionListener(new botonItem2Listener());
-	    //botonItem3.addActionListener(new botonItem3Listener());
-	    //botonItem1.setBounds(new Rectangle(0,0,50,50));
-	    //botonItem2.setBounds(new Rectangle(0,0,50,50));//* revisar dimension
-	    //botonItem3.setBounds(new Rectangle(0,0,50,50));
 
 	    labelMochila= new JLabel(mochilaIcon);
 	    labelItems= new JLabel(ItemsIcon);
@@ -486,21 +515,74 @@ public class Ventana extends JFrame{
 	    statsProfesorIcon= new ImageIcon("TeacherStats.png");
 	    labelStudentStats= new JLabel(statsEstudianteIcon);
 	    labelTeacherStats= new JLabel(statsProfesorIcon);
+	    labelAtaqueProfesor=new JLabel();
+	    labelAtaqueEstudiante=new JLabel();
+	    labelStatsEstudiante=new JLabel();
+	    labelStatsProfesor=new JLabel();
+
 	    panelStatsPelea.add(labelStudentStats);
 	    panelStatsPelea.add(labelTeacherStats);
-	    panelStatsPelea.add(new JLabel());
-	    panelStatsPelea.add(new JLabel());
-	    panelStatsPelea.add(new JLabel());
-	    panelStatsPelea.add(new JLabel());
+
+	    panelStatsPelea.add(labelStatsEstudiante);
+	   
+
+	    panelStatsPelea.add(labelStatsProfesor);
+
+	    panelStatsPelea.add(labelAtaqueEstudiante);
+
+	    panelStatsPelea.add(labelAtaqueProfesor);
+
+	    
 	    panelContenedorPelea.add(panelStatsPelea);
 
 	    add(panelContenedorPelea);
 
 	}
 
+	public void imprimirStatsEstudiante(){
+		String StatsHTML="<html>";
+		StatsHTML+="Vida: " + estudiante.getVida()+"<br/> Defensa: "+ estudiante.getDefensa()+"<br/> Ataque: "+estudiante.getAtaque();
+		
+
+		StatsHTML += "</html>";
+		
+		labelStatsEstudiante.setText(StatsHTML);
+
+	}
+
+	public void imprimirStatsProfesor(){
+		String StatsProfeHTML="<html>";
+		StatsProfeHTML+="Vida: " + profesor.getVida()+"<br/> Ataque: "+profesor.getAtaque();
+		
+
+		StatsProfeHTML += "</html>";
+		
+		labelStatsProfesor.setText(StatsProfeHTML);
+
+	}
+	public void imprimirAtaqueEstudiante(){
+		String StatusEstudiante="<html>";
+		StatusEstudiante+=estudiante.getClass().getSimpleName()+ " atacó a " + profesor.getClass().getSimpleName();
+		
+
+		StatusEstudiante += "</html>";
+		labelAtaqueEstudiante.setText(StatusEstudiante);
+		labelAtaqueProfesor.setText(" ");
+	}
+	public void imprimirAtaqueProfesor(){
+		String StatusProfe="<html>";
+		StatusProfe+=profesor.getClass().getSimpleName()+ " atacó a " + estudiante.getClass().getSimpleName();
+		
+
+		StatusProfe += "</html>";
+		labelAtaqueProfesor.setText(StatusProfe);
+		labelAtaqueEstudiante.setText(" ");
+
+	}
+
 	public class BotonSiguienteFERListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
-			estudiante= new Fer(10,200,100);
+			estudiante= new Fer(10,8,100);
 			iconEstudianteActualCompleto= new ImageIcon(estudiante.getImagenCompleta());
 			iconEstudianteActualCara=new ImageIcon(estudiante.getImagenCara());
 			labelEstudiante=new JLabel(iconEstudianteActualCompleto);
@@ -519,7 +601,7 @@ public class Ventana extends JFrame{
 			
 	public class BotonSiguienteARIListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
-			estudiante= new Ari(10,200,100);
+			estudiante= new Ari(10,8,100);
 			iconEstudianteActualCompleto= new ImageIcon(estudiante.getImagenCompleta());
 			iconEstudianteActualCara=new ImageIcon(estudiante.getImagenCara());
 			labelEstudiante=new JLabel(iconEstudianteActualCompleto);
@@ -534,7 +616,7 @@ public class Ventana extends JFrame{
 
 	public class BotonSiguienteMERCYListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
-			estudiante= new Mercy(10,200,100);
+			estudiante= new Mercy(10,8,100);
 			iconEstudianteActualCompleto= new ImageIcon(estudiante.getImagenCompleta());
 			iconEstudianteActualCara=new ImageIcon(estudiante.getImagenCara());
 			labelEstudiante=new JLabel(iconEstudianteActualCompleto);
@@ -561,11 +643,16 @@ public class Ventana extends JFrame{
         	
   			estudiante.atacar(profesor); //profesor
   			System.out.println("Atacaste a un profe");
+  			System.out.println(profesor.getVida());
+
             profesor.atacar(estudiante);
   			System.out.println("Te atacaron");
+  			System.out.println(estudiante.getVida());
 
-            //imprimirStatsEstudiante();
-            //imprimirStatsProfesor();
+            imprimirStatsEstudiante();
+            imprimirStatsProfesor();
+            imprimirAtaqueProfesor();
+            imprimirAtaqueEstudiante();
             
             if(estudiante.getVida()<=0){
                  //Gameover
@@ -577,6 +664,12 @@ public class Ventana extends JFrame{
             	System.out.println("Mataste a "+ profesor.getClass().getSimpleName());
                 //labelVidaProfesor.setText("Has derrotado al Profesor");
                 //historiaString=historiaString+"matar <br/>"
+                remove(panelContenedorPelea);
+				add(panelPrincipal);
+				panelMapa.remove(panel3);
+				pintarMapa();
+				revalidate();
+				repaint();
              }
              
 		}
@@ -938,6 +1031,7 @@ public class Ventana extends JFrame{
 		imprimeStats += estudiante.getVida();
 		labelVida.setText(imprimeStats);
 		labelRecompensa.setText("La Recompensa por este Quiz es de +20 en vida");
+		imprimeStats+="</html>";
 	}
 
 }
