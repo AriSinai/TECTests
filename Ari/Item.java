@@ -1,18 +1,18 @@
 public abstract class Item{
-	private String nombre;
+	private String imagenItem;
 
-	public Item(String nombre){
-		this.nombre=nombre;
+	public Item(String imagenItem){
+		this.imagenItem=imagenItem;
 	}
 
-	public void setNombre(String nombre){
+	public void setImagenItem(String nombre){
 
-		this.nombre=nombre;
+		this.imagenItem=imagenItem;
 
 	}
 
-	public String getNombre(){
-		return nombre;
+	public String getImagenItem(){
+		return imagenItem;
 
 	}
 }
