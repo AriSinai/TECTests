@@ -13,7 +13,7 @@ public class Ventana extends JFrame{
 
 	private ImageIcon iconFer,iconAri,iconMercy, iconEscoge, iconPersonajes, iconEstudianteActualCompleto, iconEstudianteActualCara, iconProfesorActualCompleto,iconProfesorActualCara,tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon, iconStatsPrincipal;
 
-	private int width, lenght, personaje, contador=0, respuestaSubmit, profesores,quizzes,items,quizHisto,quizMate,quizEspa,quizLoop,itemCalcetin,itemRedbull,itemMegafono;
+	private int width, lenght, personaje, contador=0, respuestaSubmit, profesores,quizzes,items,quizHisto,quizMate,quizEspa,quizLoop,itemCalcetin,itemRedbull,itemMegafono,diferencia;
 	private Campus mapa;
 	private JTextField tRespuesta;
 	private Estudiante estudiante;
@@ -217,21 +217,24 @@ public class Ventana extends JFrame{
 		
 		panel3=new JPanel();
 		panel3.setLayout(new GridLayout(mapa.casillas.length,mapa.casillas[0].length));
+		System.out.println(mapa.casillas.length);
 		for(int i=0;i<mapa.casillas.length;i++){
 			for(int j=0;j<mapa.casillas[i].length;j++){
-				if(mapa.casillas[i][j].getEstudiante()==null){
+				if(mapa.casillas[i][j].getEstudiante()==null  && mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 					panel3.add(new JLabel("[ V ]"));
+
+
 				} if(mapa.casillas[i][j].getEstudiante()==estudiante){
 					panel3.add(new JLabel(estudiante.getClass().getSimpleName()));
 				}
-				if (mapa.casillas[i][j].getProfesor()!=null){
+				if (mapa.casillas[i][j].getEstudiante()==null && mapa.casillas[i][j].getProfesor()!=null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 					panel3.add(new JLabel("[ P ]"));
 				}
-				if (mapa.casillas[i][j].getItem()!=null){
+				if (mapa.casillas[i][j].getEstudiante()==null  && mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()!=null && mapa.casillas[i][j].getQuiz()==null){
 					panel3.add(new JLabel("[ I ]"));
 
 				}
-				if (mapa.casillas[i][j].getQuiz()!=null){
+				if (mapa.casillas[i][j].getEstudiante()==null && mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()!=null){
 					panel3.add(new JLabel("[ Q ]"));
 
 				}
@@ -257,23 +260,22 @@ public class Ventana extends JFrame{
 			for(int j=0;j<mapa.casillas[i].length;j++){
 				mapa.casillas[i][j]= new Casilla();
 				int numeroAleatorio = limiteInferior + random.nextInt(limiteSuperiorAbierto - limiteInferior);
-				
 				if(profesores<15){
-					if(numeroAleatorio ==0 && Math.random()>=0.8 ){
+					if(numeroAleatorio ==0 && Math.random()>0.9 && mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setProfesor(new Draculator(10,100));
 						profesores++;
 					}
 		
-					if(numeroAleatorio ==1 && Math.random()>=0.8){
+					if(numeroAleatorio ==1 && Math.random()>0.9&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setProfesor(new PorfirioGuiaz(10,100));
 						profesores++;
 					}
 					
-					if(numeroAleatorio ==2 && Math.random()>=0.8){
+					if(numeroAleatorio ==2 && Math.random()>0.9&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setProfesor(new CaptainLoop(10,100));
 						profesores++;
 					}
-					if(numeroAleatorio ==3 && Math.random()>=0.8){
+					if(numeroAleatorio ==3 && Math.random()>0.9&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setProfesor(new HannibalLecturas(10,100));
 						profesores++;
 
@@ -284,7 +286,7 @@ public class Ventana extends JFrame{
 					
 				}	
 				if(items<8){
-					if(numeroAleatorio ==0 && Math.random()>=0.8){
+					if(numeroAleatorio ==0 && Math.random()>0.7&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setItem(new CalcetinSudado());
 
 					
@@ -292,14 +294,14 @@ public class Ventana extends JFrame{
 
 					}
 		
-					if(numeroAleatorio ==1 && Math.random()>=0.8){
+					if(numeroAleatorio ==1 && Math.random()>0.7&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setItem(new Redbull());
 
 					
 						items++;
 					}
 					
-					if(numeroAleatorio ==2 && Math.random()>=0.8){
+					if(numeroAleatorio ==2 && Math.random()>0.7&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setItem(new Megafono());
 
 						
@@ -313,25 +315,25 @@ public class Ventana extends JFrame{
 				}	
 
 				if(quizzes<4){
-					if(numeroAleatorio ==3 && Math.random()>=0.6 && quizMate<1){
+					if(numeroAleatorio ==3 && Math.random()>=0.6 && quizMate<1&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setQuiz(new QuizMate());
 						quizzes++;
 						quizMate++;
 
 					}
-					if(numeroAleatorio ==2 && Math.random()>=0.8 && quizLoop<1){
+					if(numeroAleatorio ==2 && Math.random()>=0.8 && quizLoop<1&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setQuiz(new QuizLoop());
 						quizzes++;
 						quizLoop++;
 
 					}
-					if(numeroAleatorio ==1 && Math.random()>=0.7 && quizHisto<1){
+					if(numeroAleatorio ==1 && Math.random()>=0.7 && quizHisto<1&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setQuiz(new QuizHisto());
 						quizzes++;
 						quizHisto++;
 
 					}
-					if(numeroAleatorio ==0 && Math.random()>=0.9 && quizEspa<1){
+					if(numeroAleatorio ==0 && Math.random()>=0.9 && quizEspa<1&& mapa.casillas[i][j].getProfesor()==null && mapa.casillas[i][j].getItem()==null && mapa.casillas[i][j].getQuiz()==null){
 						mapa.casillas [i][j].setQuiz(new QuizEspa());
 						quizzes++;
 						quizEspa++;
@@ -340,9 +342,31 @@ public class Ventana extends JFrame{
 
 					
 				}
+				
+				
+
+				
 
 			}
 		}
+
+		/*
+		if(i>j || j>i){
+
+			if (i>j){
+
+				int diferencia = i-j;
+				System.out.println(diferencia);
+
+
+			}else if (j>i){
+
+				int diferencia = j-i;
+				System.out.println(diferencia);
+
+			}
+		}
+		*/
 
 
 		mapa.casillas[0][0].setEstudiante(estudiante);
@@ -664,10 +688,13 @@ public class Ventana extends JFrame{
 
 
             }*/
-	try{
+			try{
             	gameOver(estudiante.getVida());
             }catch(GameOverException go){
-            	pFinal();
+				remove(panelContenedorPelea);          	
+				pFinal();
+				revalidate();
+				repaint();
             }
 		
             if(profesor.getVida()<=0){
@@ -699,6 +726,7 @@ public class Ventana extends JFrame{
 	}
 
 	public void pFinal(){
+		
 		panelGameOver = new JPanel();
 		labelGameOver = new JLabel("Game Over");
 		panelGameOver.add(labelGameOver);
@@ -728,9 +756,9 @@ public class Ventana extends JFrame{
 				labelMaestroCara= new JLabel(iconProfesorActualCara);
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarPelea();
+				//iniciarPelea();
 				//profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
-				//iniciarQuizz();
+				iniciarQuizz();
 				revalidate();
 				repaint();
 
@@ -814,9 +842,9 @@ public class Ventana extends JFrame{
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarPelea();
+				//iniciarPelea();
 				//profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
-		
+				iniciarQuizz();
 				revalidate();
 				repaint();
 
@@ -900,9 +928,9 @@ public class Ventana extends JFrame{
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarPelea();
+				//iniciarPelea();
 				//profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
-				//iniciarQuizz();
+				iniciarQuizz();
 				revalidate();
 				repaint();
 
@@ -947,9 +975,9 @@ public class Ventana extends JFrame{
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
-				iniciarPelea();
+				//iniciarPelea();
 				//profesor=mapa.casillas.getProfesor();
-				//iniciarQuizz();
+				iniciarQuizz();
 				revalidate();
 				repaint();
 
@@ -970,15 +998,6 @@ public class Ventana extends JFrame{
 
 		}
 	}	
-
-	/*
-	public void mostrarCalificación(){
-
-		panelCalificacion=
-
-
-	}
-	*/
 
 	public void imprimirPreguntas(){
 		// Aqui se van a imprimir las preguntas segun el contador, para que no se repitan
@@ -1070,3 +1089,4 @@ public class Ventana extends JFrame{
 	}
 
 }
+
