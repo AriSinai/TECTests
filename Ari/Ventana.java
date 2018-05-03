@@ -2,13 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
+import java.util.InputMismatchException;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor;
+	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver;
 
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida;
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz;
 
-	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal,panelHTMLHistoria; 
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal,panelHTMLHistoria,panelCalificacion,panelGameOver; 
 
 	private ImageIcon iconFer,iconAri,iconMercy, iconEscoge, iconPersonajes, iconEstudianteActualCompleto, iconEstudianteActualCara, iconProfesorActualCompleto,iconProfesorActualCara,tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon, iconStatsPrincipal;
 
@@ -657,12 +658,18 @@ public class Ventana extends JFrame{
             imprimirAtaqueProfesor();
             imprimirAtaqueEstudiante();
             
-            if(estudiante.getVida()<=0){
+            /*if(estudiante.getVida()<=0){
                  //Gameover
             	System.out.println("Moristeee");
 
 
+            }*/
+	try{
+            	gameOver(estudiante.getVida());
+            }catch(GameOverException go){
+            	pFinal();
             }
+		
             if(profesor.getVida()<=0){
             	System.out.println("Mataste a "+ profesor.getClass().getSimpleName());
                 //labelVidaProfesor.setText("Has derrotado al Profesor");
@@ -678,6 +685,24 @@ public class Ventana extends JFrame{
              }
              
 		}
+	}
+	
+	public void gameOver(int vida) throws GameOverException{
+            if(estudiante.getVida()<=0){
+                //Gameover
+            	throw new GameOverException();
+            }else{
+        
+        	System.out.println("Nadie ha muerto");
+        }
+        
+	}
+
+	public void pFinal(){
+		panelGameOver = new JPanel();
+		labelGameOver = new JLabel("Game Over");
+		panelGameOver.add(labelGameOver);
+		add(panelGameOver);
 	}
 
 	public class BIzquierdaListener implements ActionListener{
