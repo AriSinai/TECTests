@@ -1,9 +1,18 @@
 public abstract class Item{
-	private int aumento;
-	private Estudiante estudiante;
-	private ImageIcon image;
+	private String nombre;
 
-	public Item(int aumento){
-		this.aumento=aumento;
+	public Item(String nombre){
+		this.nombre=nombre;
+	}
+
+	public void setNombre(String nombre){
+
+		this.nombre=nombre;
+
+	}
+
+	public String getNombre(){
+		return nombre;
+
 	}
 }

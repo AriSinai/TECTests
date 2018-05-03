@@ -1,8 +1,36 @@
 public class Profesor extends Personaje{
-	
-	public Profesor (int ataque,int vida){
-		super(ataque,vida);
-	}
+	private String imagenCompleta ;
+	private String imagenCara;
+	//private String imagenAprobado;
+	//private String imagenPerdiste;
 
 	
+	public Profesor (int ataque, int vida, String imagenCompleta, String imagenCara){
+		super(ataque,vida);
+		this.imagenCompleta=imagenCompleta;
+		this.imagenCara=imagenCara;
+
+	}
+	
+
+	public void setImagenCompleta(String imagenCompleta){
+
+		this.imagenCompleta=imagenCompleta;
+
+	}
+
+	public String getImagenCompleta(){
+		return imagenCompleta;
+
+	}
+	public void setImagenCara(String imagenCara){
+
+		this.imagenCara=imagenCara;
+
+	}
+
+	public String getImagenCara(){
+		return imagenCara;
+
+	}
 }

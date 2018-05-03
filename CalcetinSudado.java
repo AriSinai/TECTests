@@ -1,7 +1,8 @@
-public class Redbull extends Item{
-	private String ruta= "Redbull.png";
+public class CalcetinSudado extends Item{
 
-	public Redbull(String nombre){
+	private String ruta= "CalcetinSudado.png";
+
+	public CalcetinSudado(String nombre){
 		super(nombre);
 
 		
