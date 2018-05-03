@@ -1,0 +1,47 @@
+import javax.swing.JFileChooser;
+
+
+//panel Introduccion
+botonCargarPartida= new JButton("Cargar Partida");
+botonCargarPartida.addActionListener(new BotonCargarPartidaListener());
+panelintroduccion.add(botonCargarPartida);
+
+botonGuardarPartida = new JButton("Guardar partida");
+botonGuardarPartida.addActionListener(new BotonGuardarPartidaListener());
+panelIntroduccion.add(botonGuardarPartida);
+
+
+
+//listener
+
+	public class BotonCargarPartidaListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			fileChooser= new JFileChooser();
+			fileChooser.showOpenDialog(null);
+			
+				File selectedFile = fileChooser.getSelectedFile();
+				FileInputStream fileInputS = new FileInputStream(selectedFile);
+				ObjectInputStream objectInputS = new ObjectInputStream(fin);
+				partida= (Partida)ois.readObject();
+			}
+		}
+
+
+public class BotonGuardarPartidaListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			try{
+				JOptionPane pane= new JOptionPane();
+				String partidaSeleccion=pane.showInputDialog("Selecciona la partida");
+				FileOutputStream fileOutS = new FileOutputStream(partidaSeleccion);
+				ObjectOutputStream objOutS = new ObjectOutputStream(fout);
+				oos.writeObject(partida);
+				oos.close();				
+			}catch(FileNotFoundException ex){
+				ex.printStackTrace();
+			}catch(IOException ex){
+				ex.printStackTrace();
+			}
+
+
+		}
+	}
