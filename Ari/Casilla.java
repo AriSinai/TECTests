@@ -4,6 +4,9 @@ public class Casilla{
 	private Estudiante estudiante;
 	private Item item;
 	private Quiz quiz;
+	private String nombreCasilla;
+
+
 
 
 
@@ -40,6 +43,14 @@ public class Casilla{
 
 	public Quiz getQuiz(){
 		return quiz;
+	}
+	public void setNombreCasilla(String nombreCasilla){
+
+		this.nombreCasilla=nombreCasilla;
+	}
+
+	public String getNombreCasilla(){
+		return nombreCasilla;
 	}
 
 }

@@ -3,6 +3,7 @@ public class Pregunta{
 	private Respuesta[] respuestas;
 	private Respuesta r,respuestaCorrecta;
 	private Estudiante estudiante;
+	private int estado;
 
 	public Pregunta(String pregunta){
 		this.pregunta = pregunta;
@@ -17,6 +18,15 @@ public class Pregunta{
 	public void setPregunta(String pregunta){
 		this.pregunta = pregunta;
 	}
+
+	public int getEstado(){
+		return estado;
+	}
+
+	public void setEstado(int estado){
+		this.estado = estado;
+	}
+
 
 	public void addRespuesta(Respuesta r, int indexRespuesta){
 		respuestas[indexRespuesta] = r;
@@ -44,10 +54,12 @@ public class Pregunta{
 		try{
 			if(respuestas[indexRespuesta].getRespuesta().equals(respuestaCorrecta.getRespuesta())){
 				estudiante.setVida(estudiante.getVida()+20);
+				estado=2;
 				System.out.println("Bien");
 				
 			}else{
 				System.out.println("Mal");
+				estado=3;
 			}
 		}catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Inserta 1, 2 o 3, porfavor");
