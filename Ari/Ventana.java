@@ -3,9 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import java.util.InputMismatchException;
+import javax.swing.JFileChooser;
 public class Ventana extends JFrame{
+	
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver,labelAprobaste,labelPerdiste,labelCalificacion;
+
+        private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver,labelAprobaste,labelPerdiste,labelCalificacion;
 
 
 	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz,botonContinuar;
@@ -67,10 +70,49 @@ public class Ventana extends JFrame{
 			botonCargar= new JButton(cargarPartidoIcon);
 			panelBotonesInicio.add(botonSiguiente);
 			panelBotonesInicio.add(botonCargar);
+ 			panelIntroduccion.add(panelBotonesInicio);
+		//cargar y guardar
+		        botonCargarPartida= new JButton("Cargar Partida");
+			botonCargarPartida.addActionListener(new BotonCargarPartidaListener());
+			panelIntroduccion.add(botonCargarPartida);
 
-
-			panelIntroduccion.add(panelBotonesInicio);
+			botonGuardarPartida = new JButton("Guardar partida");
+			botonGuardarPartida.addActionListener(new BotonGuardarPartidaListener());
+			panelIntroduccion.add(botonGuardarPartida);
 			add(panelIntroduccion);
+		
+		
+			public class BotonCargarPartidaListener implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+			fileChooser= new JFileChooser();
+			fileChooser.showOpenDialog(null);
+			
+			File selectedFile = fileChooser.getSelectedFile();
+			FileInputStream fileInputS = new FileInputStream(selectedFile);
+			ObjectInputStream objectInputS = new ObjectInputStream(fin);
+			partida= (Partida)ois.readObject();
+			}
+		}
+
+
+		public class BotonGuardarPartidaListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+		try{
+		JOptionPane pane= new JOptionPane();
+		String partidaSeleccion=pane.showInputDialog("Selecciona la partida");
+		FileOutputStream fileOutS = new FileOutputStream(partidaSeleccion);
+		ObjectOutputStream objOutS = new ObjectOutputStream(fout);
+		oos.writeObject(partida);
+		oos.close();				
+		}catch(FileNotFoundException ex){
+		ex.printStackTrace();
+		}catch(IOException ex){
+		ex.printStackTrace();
+		}
+
+
+		}
+	}
 	}
 
 	public void elegirPersonaje(){
