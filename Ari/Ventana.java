@@ -196,7 +196,7 @@ public class Ventana extends JFrame{
 		panelStatsPrincipal.add(labelStatsPrincipal, BorderLayout.PAGE_START);
 
 		labelVida=new JLabel();
-		labelAtaque=new JLabel();
+		labelAtaque=new JLabel(); 
 		labelNombre=new JLabel();
 		labelNombre.setText("Eres la estudiante: "+estudiante.getClass().getSimpleName());
 		panelStatsEstudiantePrincipal.add(labelNombre);
@@ -350,6 +350,8 @@ public class Ventana extends JFrame{
 	}
 
 	public void imprimirStatsPanelPrincipal(){
+		//labelVida=new JLabel();
+		
 		String imprimeStatsStudiante="<html>";
 		imprimeStatsStudiante+="STATS PERSONAJE <br/> Vida: " + estudiante.getVida()+"<br/> Defensa: "+ estudiante.getDefensa()+"<br/> Ataque: "+estudiante.getAtaque();
 		
@@ -362,6 +364,7 @@ public class Ventana extends JFrame{
 
 	}
 	public void imprimirCantidadItems(){
+		//labelAtaque=new JLabel();
 		String imprimeItems="<html>";
 		imprimeItems+="OBJETOS EN LA MOCHILA <br/> Calcetines Sudados: <br/> Megafonos: <br/> Redbulls: ";
 		imprimeItems += "</html>";
@@ -667,6 +670,8 @@ public class Ventana extends JFrame{
                 remove(panelContenedorPelea);
 				add(panelPrincipal);
 				panelMapa.remove(panel3);
+				imprimirStatsPanelPrincipal();
+				imprimirCantidadItems();
 				pintarMapa();
 				revalidate();
 				repaint();
@@ -705,6 +710,7 @@ public class Ventana extends JFrame{
 				repaint();
 
 			}
+			/*
 			else if (mapa.casillas[estudiante.getX()][estudiante.getY()].getQuiz()!= null){
 				quiz=mapa.casillas[estudiante.getX()][estudiante.getY()].getQuiz();	
 
@@ -738,6 +744,7 @@ public class Ventana extends JFrame{
 				repaint();
 
 			}
+			*/
 
 			}
 			catch(ArrayIndexOutOfBoundsException ex){
@@ -788,7 +795,9 @@ public class Ventana extends JFrame{
 				revalidate();
 				repaint();
 
-			}else if (mapa.casillas[estudiante.getX()][estudiante.getY()].getQuiz()!= null){
+			}
+			/*
+			else if (mapa.casillas[estudiante.getX()][estudiante.getY()].getQuiz()!= null){
 				quiz=mapa.casillas[estudiante.getX()][estudiante.getY()].getQuiz();	
 
 				if (quiz.getClass().getSimpleName().equals("Mate")){
@@ -821,6 +830,7 @@ public class Ventana extends JFrame{
 				repaint();
 
 			}
+			*/
 			}
 			catch(ArrayIndexOutOfBoundsException ex){
 			}
