@@ -2,7 +2,7 @@ public class Mercy extends Estudiante{
 
 
 	public Mercy (int ataque,int defensa, int vida){
-		super(ataque, defensa,vida,"Mercy.png","caraMercy.png");
+		super(ataque, defensa,vida,"Mercy.jpeg","caraMercy.jpeg");
 
 	}
 

@@ -4,11 +4,11 @@ import java.awt.event.*;
 import java.util.Random;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEst,labelMaestro,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems;
+	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal;
 	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida;
-	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelOtro, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelStats,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea; 
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal; 
 
-	private ImageIcon Fer,Ari,Mercy, Escoge, Personajes, estudianteActual, tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon;
+	private ImageIcon iconFer,iconAri,iconMercy, iconEscoge, iconPersonajes, iconEstudianteActualCompleto, iconEstudianteActualCara, iconProfesorActualCompleto,iconProfesorActualCara,tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, ItemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon, iconStatsPrincipal;
 
 
 	private int width, lenght, personaje, contador=0, respuestaSubmit;
@@ -22,6 +22,7 @@ public class Ventana extends JFrame{
 	private Random random=new Random();
 	private Pregunta pregunta;
 	private Respuesta r1,r2,r3,respuestaCorrecta;
+	private Item item;
 
 
 
@@ -66,19 +67,17 @@ public class Ventana extends JFrame{
 		// Se defienen los botones para cada personaje
 		panelPersonajes = new JPanel();
 		panelPersonajes.setLayout( new BorderLayout());
-		//panelPersonajes.setLayout( new GridBagLayout());
-		//GridBagConstraints c = new GridBagConstraints();
 			
 
-		Ari=new ImageIcon( "Ari.jpeg");
-		Fer=new ImageIcon( "Fer.jpeg");
-		Mercy=new ImageIcon( "Mercy.jpeg");
-		Escoge=new ImageIcon("EscogePersonaje.png");
-		Personajes=new ImageIcon("Personajes.png");
+		iconAri=new ImageIcon( "Ari.jpeg");
+		iconFer=new ImageIcon( "Fer.jpeg");
+		iconMercy=new ImageIcon( "Mercy.jpeg");
+		iconEscoge=new ImageIcon("EscogePersonaje.png");
+		iconPersonajes=new ImageIcon("Personajes.png");
 
-		botonFer=new JButton (Fer);
-		botonAri= new JButton(Ari);
-		botonMercy = new JButton(Mercy);
+		botonFer=new JButton (iconFer);
+		botonAri= new JButton(iconAri);
+		botonMercy = new JButton(iconMercy);
 		botonFer.addActionListener(new BotonSiguienteFERListener());
 		botonAri.addActionListener(new BotonSiguienteARIListener());
 		botonMercy.addActionListener(new BotonSiguienteMERCYListener());
@@ -86,8 +85,8 @@ public class Ventana extends JFrame{
 		botonFer.setBounds(new Rectangle (0,0,300,300));
 		botonMercy.setBounds(new Rectangle (0,0,300,300));
 
-		tituloEscoge=new JLabel(Escoge);
-		labelPersonaje=new JLabel(Personajes);
+		tituloEscoge=new JLabel(iconEscoge);
+		labelPersonaje=new JLabel(iconPersonajes);
 
 
 		panelPersonajes.add(labelPersonaje, BorderLayout.PAGE_END);
@@ -100,7 +99,6 @@ public class Ventana extends JFrame{
 	}
 	public void mapaPrincipal(){
 
-		
 		setSize(1000,1800);
 		panelPrincipal=new JPanel();
 		panelPrincipal.setLayout(new GridLayout(2,2));
@@ -164,16 +162,32 @@ public class Ventana extends JFrame{
 
 		//4
 
-		panelOtro= new JPanel();		
-		panelOtro.setLayout(new FlowLayout());
+		panelStatsPrincipal= new JPanel();		
+		panelStatsPrincipal.setLayout(new BorderLayout());
+
+
+		panelStatsEstudiantePrincipal=new JPanel();
+		panelStatsEstudiantePrincipal.setLayout(new GridLayout(3,1));
+
+		panelStatsPrincipal.add(labelEstudianteCara, BorderLayout.LINE_START);
+
+		iconStatsPrincipal=new ImageIcon("StatsPrincipal.png");
+		labelStatsPrincipal=new JLabel(iconStatsPrincipal);
+
+		panelStatsPrincipal.add(labelStatsPrincipal, BorderLayout.PAGE_START);
+
 		labelVida=new JLabel();
 		labelAtaque=new JLabel();
 		labelNombre=new JLabel();
 		labelVida.setText("Vida: "+estudiante.getVida());
 		labelAtaque.setText("ataque: "+estudiante.getAtaque());
-		panelOtro.add(labelVida);
-		panelOtro.add(labelAtaque);
-		panelPrincipal.add(panelOtro);
+		labelNombre.setText("Eres la estudiante: "+estudiante.getClass().getSimpleName());
+		panelStatsEstudiantePrincipal.add(labelNombre);
+		panelStatsEstudiantePrincipal.add(labelVida);
+		panelStatsEstudiantePrincipal.add(labelAtaque);
+		panelStatsPrincipal.add(panelStatsEstudiantePrincipal,BorderLayout.CENTER);
+
+		panelPrincipal.add(panelStatsPrincipal);
 
 
 		add(panelPrincipal);
@@ -189,7 +203,8 @@ public class Ventana extends JFrame{
 					panel3.add(new JLabel("[ V ]"));
 				}else if(mapa.casillas[i][j].getEstudiante()==estudiante){
 					panel3.add(new JLabel(estudiante.getClass().getSimpleName()));
-				}else{
+				}
+				if (mapa.casillas[i][j].getProfesor()!=null){
 					panel3.add(new JLabel("[ P ]"));
 				}
 			}
@@ -209,31 +224,22 @@ public class Ventana extends JFrame{
 		for(int i=0;i<mapa.casillas.length;i++){
 			for(int j=0;j<mapa.casillas[i].length;j++){
 				mapa.casillas[i][j]= new Casilla();
-				if(Math.random()>=0.5){
+				
 
 					if(numeroAleatorio ==0){
-						
 						mapa.casillas [i][j].setProfesor(new Draculator(10,100));
-						
-
-						
 					}
-
+		
+					if(numeroAleatorio ==1){
+						mapa.casillas [i][j].setProfesor(new PorfirioGuiaz(10,100));
+					}
 					
-					else if(numeroAleatorio ==1){
-						mapa.casillas [i][j].setProfesor(new PorfirioDiaz(10,100));
+					if(numeroAleatorio ==2){
+						mapa.casillas [i][j].setProfesor(new CaptainLoop(10,100));
 					}
-					/*
-						if(numeroAleatorio ==2){
-						mapa.casillas [i][j].profesor=new CaptainLoop(10,100);
-					}
-						if(numeroAleatorio ==3){
-						mapa.casillas [i][j].profesor=new HannibalLecturas(10,100);
-					}
-					*/
-
-				}
-				
+					if(numeroAleatorio ==3){
+						mapa.casillas [i][j].setProfesor(new HannibalLecturas(10,100));
+					}		
 			}
 		}
 		mapa.casillas[0][0].setEstudiante(estudiante);
@@ -267,6 +273,7 @@ public class Ventana extends JFrame{
 	}
 
 	public void iniciarQuizz(){
+
 		//ESTO TAMBIEN ES MIENTRAS
 		/*Draculator = new ImageIcon("Draculator.jpeg");
 		PorfirioGuiaz = new ImageIcon("PorfirioGuiaz.jpeg");
@@ -275,8 +282,10 @@ public class Ventana extends JFrame{
 		Ari=new ImageIcon( "Ari.jpeg");
 		Fer=new ImageIcon( "Fer.jpeg");
 		Mercy=new ImageIcon( "Mercy.jpeg");*/
+
+
+
 		
-		pregunta=new Pregunta();
 		panelQuiz = new JPanel();
 		panelQuiz.setLayout(new GridLayout(2,2));
 		panelImagen = new JPanel();
@@ -286,33 +295,18 @@ public class Ventana extends JFrame{
 		labelDuelo=new JLabel(dueloIcon);
 		panelImagen.add(labelDuelo);
 		panelImagenDos=new JPanel();
+
 		panelImagenDos.setLayout(new GridLayout(1,3));
+
 		//ESTO SE VA A CAMBIAR PERO MIENTRAS
-		if(estudiante.getClass().getSimpleName().equals("Fer")){
-			labelEst = new JLabel(Fer);
-		}else if(estudiante.getClass().getSimpleName().equals("Ari")){
-			labelEst = new JLabel(Ari);
-		}else if(estudiante.getClass().getSimpleName().equals("Mercy")){
-			labelEst = new JLabel(Mercy);
-		}
+		labelEstudiante=new JLabel(iconEstudianteActualCara);
 		//
 		
-		panelImagenDos.add(labelEst);
+		panelImagenDos.add(labelEstudiante);
 		vsIcon=new ImageIcon("vs.png");
 		labelVacio = new JLabel(vsIcon);
 		panelImagenDos.add(labelVacio);
-		/*
-		if(contador ==0){
-			labelMaestro = new JLabel(Draculator);
-		}else if(contador == 1){
-			labelMaestro = new JLabel(PorfirioGuiaz);
-		}else if(contador == 2){
-			labelMaestro = new JLabel(HannibalLecturas);
-		}else if(contador == 3){
-			labelMaestro = new JLabel(CaptainLoop);
-		}
-		*/
-		
+		labelMaestro=new JLabel(iconProfesorActualCara);
 		panelImagenDos.add(labelMaestro);
 		panelImagen.add(panelImagenDos);
 		panelQuiz.add(panelImagen);
@@ -364,19 +358,17 @@ public class Ventana extends JFrame{
 
 		panelImagen = new JPanel();
 		panelImagen.setLayout(new GridLayout(2,1));
-		Fer = new ImageIcon("Fer.jpeg");
-		Ari = new ImageIcon("Ari.jpeg");
 		dueloIcon=new ImageIcon("Duelo.png");
 		labelDuelo=new JLabel(dueloIcon);
 		panelImagen.add(labelDuelo);
 		panelImagenDos=new JPanel();
 		panelImagenDos.setLayout(new GridLayout(1,3));
-		labelEst = new JLabel(Fer);
-		panelImagenDos.add(labelEst);
+		labelEstudiante = new JLabel(iconEstudianteActualCara);
+		panelImagenDos.add(labelEstudiante);
 		vsIcon=new ImageIcon("vs.png");
 		labelVacio = new JLabel(vsIcon);
 		panelImagenDos.add(labelVacio);
-		labelMaestro = new JLabel(Ari);
+		labelMaestro = new JLabel(iconProfesorActualCara);
 		panelImagenDos.add(labelMaestro);
 		panelImagen.add(panelImagenDos);
 		panelContenedorPelea.add(panelImagen);
@@ -443,7 +435,11 @@ public class Ventana extends JFrame{
 	public class BotonSiguienteFERListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Fer(100,200,100);
-			//estudianteActual= new ImageIcon(estudiante.getRuta());
+			iconEstudianteActualCompleto= new ImageIcon(estudiante.getImagenCompleta());
+			iconEstudianteActualCara=new ImageIcon(estudiante.getImagenCara());
+			labelEstudiante=new JLabel(iconEstudianteActualCompleto);
+			labelEstudianteCara=new JLabel(iconEstudianteActualCara);
+
 			llenarCasillas();
 			remove(panelPersonajes);
 			mapaPrincipal();
@@ -458,7 +454,10 @@ public class Ventana extends JFrame{
 	public class BotonSiguienteARIListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Ari(100,200,100);
-			//estudianteActual= new ImageIcon(estudiante.getImagenCompleta());
+			iconEstudianteActualCompleto= new ImageIcon(estudiante.getImagenCompleta());
+			iconEstudianteActualCara=new ImageIcon(estudiante.getImagenCara());
+			labelEstudiante=new JLabel(iconEstudianteActualCompleto);
+			labelEstudianteCara=new JLabel(iconEstudianteActualCara);
 			llenarCasillas();
 			remove(panelPersonajes);
 			mapaPrincipal();
@@ -469,7 +468,10 @@ public class Ventana extends JFrame{
 	public class BotonSiguienteMERCYListener implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 			estudiante= new Mercy(100,200,100);
-			//estudianteActual= new ImageIcon(estudiante.getRuta());
+			iconEstudianteActualCompleto= new ImageIcon(estudiante.getImagenCompleta());
+			iconEstudianteActualCara=new ImageIcon(estudiante.getImagenCara());
+			labelEstudiante=new JLabel(iconEstudianteActualCompleto);
+			labelEstudianteCara=new JLabel(iconEstudianteActualCara);
 			llenarCasillas();
 			remove(panelPersonajes);
 			mapaPrincipal();
@@ -527,11 +529,13 @@ public class Ventana extends JFrame{
 			try{
 			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
 			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
-
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor();	
+				iconProfesorActualCompleto=new ImageIcon(profesor.getImagenCompleta());
+				iconProfesorActualCara= new ImageIcon(profesor.getImagenCara());
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
 				iniciarPelea();
-				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
+				//profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
 				//iniciarQuizz();
 				revalidate();
 				repaint();
@@ -571,11 +575,16 @@ public class Ventana extends JFrame{
 			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
 
 			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor();	
+				iconProfesorActualCompleto=new ImageIcon(profesor.getImagenCompleta());
+				iconProfesorActualCara= new ImageIcon(profesor.getImagenCara());
+
+
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
 				iniciarPelea();
-				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
+				//profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
 				//iniciarQuizz();
 				revalidate();
 				repaint();
@@ -614,11 +623,15 @@ public class Ventana extends JFrame{
 			try{
 			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
 			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor();
+				iconProfesorActualCompleto=new ImageIcon(profesor.getImagenCompleta());
+				iconProfesorActualCara= new ImageIcon(profesor.getImagenCara());
+
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
 				iniciarPelea();
-				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
+				//profesor=mapa.casillas[estudiante.getX()][estudiante.getY()];
 				//iniciarQuizz();
 				revalidate();
 				repaint();
@@ -655,11 +668,15 @@ public class Ventana extends JFrame{
 			try{
 			mapa.casillas[estudiante.getX()][estudiante.getY()].setEstudiante(estudiante);
 			if (mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor()!= null){
+				profesor=mapa.casillas[estudiante.getX()][estudiante.getY()].getProfesor();	
+				iconProfesorActualCompleto=new ImageIcon(profesor.getImagenCompleta());
+				iconProfesorActualCara= new ImageIcon(profesor.getImagenCara());
+
 
 				//historiaString=historiaString+"Apareció un villano con ataque: " + mapa.casillas[estudiante.x][estudiante.y].profesor.ataque+"<br/>";
 				remove (panelPrincipal);
 				iniciarPelea();
-				profesor=mapa.casillas.getProfesor();
+				//profesor=mapa.casillas.getProfesor();
 				//iniciarQuizz();
 				revalidate();
 				repaint();
