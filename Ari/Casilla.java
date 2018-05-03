@@ -53,4 +53,16 @@ public class Casilla{
 		return nombreCasilla;
 	}
 
+	public void removeProfesor(Profesor profesor){
+		profesor = null;
+	}
+
+	public void removeQuiz(Quiz quiz){
+		quiz = null;
+	}
+
+	public void removeItem(Item item){
+		item = null;
+	}
+
 }
