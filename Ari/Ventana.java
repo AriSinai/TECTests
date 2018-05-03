@@ -5,13 +5,14 @@ import java.util.Random;
 import java.util.InputMismatchException;
 public class Ventana extends JFrame{
 
-	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver;
+	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver,labelAprobaste,labelPerdiste,labelCalificacion;
 
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz;
 
-	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal,panelHTMLHistoria,panelCalificacion,panelGameOver; 
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz,botonContinuar;
 
-	private ImageIcon iconFer,iconAri,iconMercy, iconEscoge, iconPersonajes, iconEstudianteActualCompleto, iconEstudianteActualCara, iconProfesorActualCompleto,iconProfesorActualCara,tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, itemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon, iconStatsPrincipal;
+	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal,panelHTMLHistoria,panelGameOver,panelCalificacion, panelCalificacionDos; 
+
+	private ImageIcon iconFer,iconAri,iconMercy, iconEscoge, iconPersonajes, iconEstudianteActualCompleto, iconEstudianteActualCara, iconProfesorActualCompleto,iconProfesorActualCara,tituloPrincipalIcon, atacarIcon,logoIcon ,mochilaIcon,statsIcon,statsEstudianteIcon,statsProfesorIcon, itemsIcon,cargarPartidoIcon,iniciarIcon,flechaDerechaIcon,flechaArribaIcon,flechaIzquierdaIcon,flechaAbajoIcon,historiaIcon, calificarIcon, dueloIcon, vsIcon, iconStatsPrincipal,iconAprobaste,iconPerdiste;
 
 	private int width, lenght, personaje, contador=0, respuestaSubmit, profesores,quizzes,items,quizHisto,quizMate,quizEspa,quizLoop,itemCalcetin,itemRedbull,itemMegafono,diferencia;
 	private Campus mapa;
@@ -697,6 +698,42 @@ public class Ventana extends JFrame{
              
 		}
 	}
+
+	public void aprobasteQuiz(){
+
+		panelCalificacion = new JPanel();
+		panelCalificacion.setLayout(new GridLayout(1,2));
+		panelCalificacionDos=new JPanel();
+		panelCalificacionDos.setLayout(new GridLayout(2,1));
+		iconAprobaste=new ImageIcon(profesor.getImagenAprobado());
+		labelAprobaste=new JLabel(iconAprobaste);
+		panelCalificacion.add(labelAprobaste);
+		labelCalificacion=new JLabel("Aprobaste el quiz de "+profesor.getClass().getSimpleName());
+		botonContinuar=new JButton("Continuar");
+		botonContinuar.addActionListener(new atacarActionListener());
+		panelCalificacionDos.add(labelCalificacion);
+		panelCalificacionDos.add(botonContinuar);
+		panelCalificacion.add(panelCalificacionDos);
+		add(panelCalificacion);
+	}
+	public void fallasteQuiz(){
+		panelCalificacion = new JPanel();
+		panelCalificacion.setLayout(new GridLayout(1,2));
+		panelCalificacionDos=new JPanel();
+		panelCalificacionDos.setLayout(new GridLayout(2,1));
+		iconPerdiste=new ImageIcon(profesor.getImagenPerdiste());
+		labelPerdiste=new JLabel(iconPerdiste);
+		panelCalificacion.add(labelPerdiste);
+		labelCalificacion=new JLabel("Reprobaste el quiz de "+profesor.getClass().getSimpleName());
+		botonContinuar=new JButton("Continuar");
+		botonContinuar.addActionListener(new atacarActionListener());
+
+		panelCalificacionDos.add(labelCalificacion);
+		panelCalificacionDos.add(botonContinuar);
+		panelCalificacion.add(panelCalificacionDos);
+		add(panelCalificacion);
+
+	}
 	
 	public void gameOver(int vida) throws GameOverException{
             if(estudiante.getVida()<=0){
@@ -715,6 +752,21 @@ public class Ventana extends JFrame{
 		labelGameOver = new JLabel("Game Over");
 		panelGameOver.add(labelGameOver);
 		add(panelGameOver);
+	}
+
+	public class botonContinuarListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+
+				remove(panelCalificacion);
+				add(panelPrincipal);
+				panelMapa.remove(panel3);
+				//imprimirStatsPanelPrincipal();
+				//imprimirCantidadItems();
+				pintarMapa();
+				revalidate();
+				repaint();
+
+		}
 	}
 
 	public class BIzquierdaListener implements ActionListener{
@@ -1214,13 +1266,22 @@ public class Ventana extends JFrame{
 			
 			pregunta.submit(pregunta.getRespuestas(),respuestaSubmit,pregunta.getRespuestaCorrecta(),estudiante);
 			
+			if (pregunta.getEstado()==2){
+				remove(panelQuiz);
+				aprobasteQuiz();
+				revalidate();
+				repaint();
+
+
+
+			}else if (pregunta.getEstado()==3){
+				remove(panelQuiz);
+				fallasteQuiz();
+				revalidate();
+				repaint();
+			}
 			
-			remove(panelQuiz);
-			add(panelPrincipal);
-			panelMapa.remove(panel3);
-			pintarMapa();
-			revalidate();
-			repaint();
+			
 
 		}
 	}
