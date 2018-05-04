@@ -1,3 +1,4 @@
+import java.io.Serializable;
 public class Profesor extends Personaje{
 	private String imagenCompleta ;
 	private String imagenCara;
