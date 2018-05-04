@@ -1,3 +1,4 @@
+import java.io.Serializable;
 public class Estudiante extends Personaje{
 	private int x;
 	private int y;
