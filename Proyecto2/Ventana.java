@@ -777,8 +777,9 @@ public class Ventana extends JFrame{
 	public void pFinal(){
 		
 		panelGameOver = new JPanel();
-		labelGameOver = new JLabel("Game Over");
-		panelGameOver.add(labelGameOver);
+		panelGameOver.setLayout(new BorderLayout());
+		labelGameOver = new JLabel(new ImageIcon("GameOver.png"));
+		panelGameOver.add(labelGameOver,BorderLayout.CENTER);
 		add(panelGameOver);
 	}
 	//APORBASTE REPROBASTE
