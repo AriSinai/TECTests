@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import java.util.InputMismatchException;
+import java.io.*;
 import javax.swing.JFileChooser;
 public class Ventana extends JFrame{
 	
@@ -34,7 +35,7 @@ public class Ventana extends JFrame{
 	private Megafono[] megafonos;
 	private Redbull[] redbulls;
 	private Partida partida;
-	import java.io.*;
+
 	private JFileChooser fileChooser;
 
 	public Ventana(){
