@@ -3,12 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import java.util.InputMismatchException;
+import javax.swing.JFileChooser;
+import java.io.*;
 public class Ventana extends JFrame{
 
 	private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver,labelAprobaste,labelPerdiste,labelCalificacion;
 
 
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz,botonContinuar;
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonCargarPartida,botonOkQuiz,botonContinuar;
 
 	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal,panelHTMLHistoria,panelGameOver,panelCalificacion, panelCalificacionDos; 
 
@@ -27,6 +29,8 @@ public class Ventana extends JFrame{
 	private Respuesta r1,r2,r3,respuestaCorrecta;
 	private Item item;
 	private Quiz quiz;
+	private JFileChooser fileChooser;
+	private Partida partida;
 	
 	/*private CalcetinSudado[] calcetinSudados;
 	private Megafono[] megafonos;
@@ -65,9 +69,45 @@ public class Ventana extends JFrame{
 			panelBotonesInicio.setLayout(new GridLayout(2,1));
 			botonSiguiente=new JButton (iniciarIcon);
 			botonSiguiente.addActionListener(new BotonSiguienteListener());
-			botonCargar= new JButton(cargarPartidoIcon);
+			
 			panelBotonesInicio.add(botonSiguiente);
-			panelBotonesInicio.add(botonCargar);
+			//cargar --------------------------------------------------
+		        botonCargarPartida= new JButton(cargarPartidoIcon);
+			botonCargarPartida.addActionListener(new BotonCargarPartidaListener());
+			panelBotonesInicio.add(botonCargarPartida);
+
+			
+		
+		
+			
+	}
+	public class BotonCargarPartidaListener implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+			fileChooser= new JFileChooser();
+			fileChooser.showOpenDialog(null);
+			try {
+
+				File selectedFile = fileChooser.getSelectedFile();
+				FileInputStream fileInputS = new FileInputStream(selectedFile);
+				ObjectInputStream objectInputS = new ObjectInputStream(fileInputS);
+				partida=(Partida)objectInputS.readObject();
+
+
+			}catch(FileNotFoundException ex){
+				System.out.println("Aun no hay partida");
+
+			}catch(IOException ex){
+				ex.printStackTrace();
+
+			}catch(ClassNotFoundException ex){
+				ex.printStackTrace();
+
+			}
+			
+
+			
+			}
+		}
 
 			panelIntroduccion.add(panelBotonesInicio);
 			add(panelIntroduccion);
@@ -160,6 +200,9 @@ public class Ventana extends JFrame{
 		flechaIzquierda = new JButton(flechaIzquierdaIcon);
 		flechaDerecha = new JButton(flechaDerechaIcon);
 		botonGuardarPartida=new JButton("Guardar Partida");
+		botonGuardarPartida.addActionListener(new BotonGuardarPartidaListener());	
+		flechaAbajo = new JButton(flechaAbajoIcon);
+		flechaArriba = new JButton(flechaArribaIcon);
 
 		//ACTIONLISTENER-->
 
@@ -750,6 +793,25 @@ public class Ventana extends JFrame{
 				pintarMapa();
 				revalidate();
 				repaint();
+
+		}
+	}
+
+	public class BotonGuardarPartidaListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+		try{
+		JOptionPane pane= new JOptionPane();
+		String partidaSeleccion=pane.showInputDialog("Selecciona la partida");
+		FileOutputStream fout = new FileOutputStream(partidaSeleccion);
+		ObjectOutputStream out = new ObjectOutputStream(fout);
+		out.writeObject(partida);
+		out.close();				
+		}catch(FileNotFoundException ex){
+		ex.printStackTrace();
+		}catch(IOException ex){
+		ex.printStackTrace();
+		}
+
 
 		}
 	}
