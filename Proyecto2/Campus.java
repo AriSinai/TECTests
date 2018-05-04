@@ -1,3 +1,4 @@
+import java.io.Serializable;
 public class Campus{
 	
 	public Casilla [][] casillas;
