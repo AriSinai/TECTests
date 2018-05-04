@@ -1,0 +1,60 @@
+//cargar y guardar
+		    botonCargarPartida= new JButton("Cargar Partida");
+			botonCargarPartida.addActionListener(new BotonCargarPartidaListener());
+			panelIntroduccion.add(botonCargarPartida);
+
+			botonGuardarPartida = new JButton("Guardar partida");
+			botonGuardarPartida.addActionListener(new BotonGuardarPartidaListener());
+			panelIntroduccion.add(botonGuardarPartida);
+			add(panelIntroduccion);
+		
+		
+			
+	}
+	public class BotonCargarPartidaListener implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+			fileChooser= new JFileChooser();
+			fileChooser.showOpenDialog(null);
+			try {
+
+				File selectedFile = fileChooser.getSelectedFile();
+				FileInputStream fileInputS = new FileInputStream(selectedFile);
+				ObjectInputStream objectInputS = new ObjectInputStream(fin);
+				partida=(Partida)ois.readObject();
+
+
+			}catch(FileNotFoundException ex){
+				System.out.println("Aun no hay partida");
+
+			}catch(IOException ex){
+				ex.printStackTrace();
+
+			}catch(ClassNotFoundException ex){
+				ex.printStackTrace();
+
+			}
+			
+
+			
+			}
+		}
+
+
+		public class BotonGuardarPartidaListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+		try{
+		JOptionPane pane= new JOptionPane();
+		String partidaSeleccion=pane.showInputDialog("Selecciona la partida");
+		FileOutputStream fout = new FileOutputStream(partidaSeleccion);
+		ObjectOutputStream out = new ObjectOutputStream(fout);
+		oos.writeObject(partida);
+		oos.close();				
+		}catch(FileNotFoundException ex){
+		ex.printStackTrace();
+		}catch(IOException ex){
+		ex.printStackTrace();
+		}
+
+
+		}
+	}
