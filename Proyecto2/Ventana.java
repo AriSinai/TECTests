@@ -107,10 +107,11 @@ public class Ventana extends JFrame{
 
 			
 			}
-		}
-
+		
 			panelIntroduccion.add(panelBotonesInicio);
 			add(panelIntroduccion);
+		}
+
 	}
 
 	public void elegirPersonaje(){
