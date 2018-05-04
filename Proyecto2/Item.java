@@ -1,3 +1,4 @@
+import java.io.Serializable;
 public abstract class Item{
 	private String imagenItem;
 
