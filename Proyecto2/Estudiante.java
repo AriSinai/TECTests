@@ -1,5 +1,5 @@
 import java.io.Serializable;
-public class Estudiante extends Personaje{
+public class Estudiante extends Personaje implements Serializable{
 	private int x;
 	private int y;
 	private String imagenCompleta ;
