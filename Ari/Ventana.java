@@ -11,7 +11,7 @@ public class Ventana extends JFrame{
         private JLabel labelPersonaje, tituloEscoge,labelHistoria, labelVida,labelAtaque,labelNombre,labelPregunta,labelEstudiante,labelEstudianteCara,labelMaestro,labelMaestroCara,labelRespuesta,labelVacio,labelStats,labelRecompensa,labelDuelo,labelHistoriaHTML,labelStudentStats,labelTeacherStats,labelMochila, labelItems, labelStatsPrincipal,labelStatsEstudiante,labelStatsProfesor,labelAtaqueEstudiante, labelAtaqueProfesor,labelGameOver,labelAprobaste,labelPerdiste,labelCalificacion;
 
 
-	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz,botonContinuar;
+	private JButton botonFer, botonMercy,botonAri, flechaArriba,flechaAbajo,flechaDerecha,flechaIzquierda, botonSiguiente,bSubmit,botonCargar,botonRedbull,botonCalcetin,botonMegafono,botonAtacar, botonGuardarPartida,botonOkQuiz,botonContinuar, botonGuardarPartida, botonCargarPartida;
 
 	private JPanel panelPersonajes, panelPrincipal, panelHistoria, panelFlechas, panelMapa, panelStats, panel3, panelIntroduccion,panelQuiz, panelImagen,panelPreguntas,panelSubmit,panelBotonesInicio, panelImagenDos, panelContenedorPelea, panelItems, panelPelea, panelStatsPelea,panelStatsEstudiante,panelStatsPrincipal,panelStatsEstudiantePrincipal,panelHTMLHistoria,panelGameOver,panelCalificacion, panelCalificacionDos; 
 
@@ -33,6 +33,9 @@ public class Ventana extends JFrame{
 	private CalcetinSudado[] calcetinSudados;
 	private Megafono[] megafonos;
 	private Redbull[] redbulls;
+	private Partida partida;
+	import java.io.*;
+	private JFileChooser fileChooser;
 
 	public Ventana(){
 		super("Monster TEC");
