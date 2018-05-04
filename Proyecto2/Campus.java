@@ -1,5 +1,5 @@
 import java.io.Serializable;
-public class Campus{
+public class Campus implements Serializable{
 	
 	public Casilla [][] casillas;
 
